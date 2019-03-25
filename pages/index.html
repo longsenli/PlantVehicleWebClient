@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>天能濮阳智能精益生产系统</title>
+
+		<!-- Bootstrap Core CSS -->
+		<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+		<!-- MetisMenu CSS -->
+		<link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css">
+
+		<!-- Custom CSS -->
+		<link href="../dist/css/sb-admin-2.css" rel="stylesheet" type="text/css">
+
+		<!-- Morris Charts CSS -->
+		<link href="../vendor/morrisjs/morris.css" rel="stylesheet" type="text/css">
+
+		<!-- Custom Fonts -->
+		<link href="../vendor/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="../css/layout.css" rel="stylesheet" type="text/css">
+
+		<link rel="stylesheet" type="text/css" href="../vendor/boostrap-select/bootstrap-select.min.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="../vendor/bootstrap-datatable/bootstrap-table.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="../vendor/bootstrap-table-fixed-columns/bootstrap-table-fixed-columns.css" media="screen">
+		<link rel="stylesheet" href="../vendor/jquery/ztree/css/bootstrapStyle/bootstrapStyle.css" type="text/css">
+		<link type="text/css" href="../vendor/iCheck/custom.css" rel="stylesheet" />
+		<link href="../vendor/bootstrap/css/jquery.treegrid.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../js/navLoad/sidebar-menu.css">
+		<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap-treeview.css">
+		<link href="../vendor/animate.css" rel="stylesheet" type="text/css">
+		<!-- jQuery -->
+		<script type="text/javascript" src="../vendor/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../vendor/jquery/jquery.cookie.js"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+		<script type="text/javascript" src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+		<!-- Metis Menu Plugin JavaScript -->
+		<script type="text/javascript" src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+		<!-- Morris Charts JavaScript -->
+		<script type="text/javascript" src="../vendor/raphael/raphael.min.js"></script>
+		<script type="text/javascript" src="../vendor/morrisjs/morris.min.js"></script>
+		<script type="text/javascript" src="../data/morris-data.js"></script>
+
+		<!-- Custom Theme JavaScript -->
+		<script src="../dist/js/sb-admin-2.js"></script>
+		<script type="text/javascript" src="../vendor/boostrap-select/bootstrap-select.min.js"></script>
+		<script type="text/javascript" src="../vendor/boostrap-select/defaults-zh_CN.js"></script>
+		<script type="text/javascript" src="../vendor/bootstrap-datatable/bootstrap-table.js"></script>
+		<script type="text/javascript" src="../vendor/lodop/LodopFuncs.js"></script>
+		<script type="text/javascript" src="../vendor/qrcode/reqrcode.js"></script>
+		<script type="text/javascript" src="../js/plateweigh/plateWeightReopt.js"></script>
+		<script type="text/javascript" src="../js/documentJS/documentManage.js"></script>
+		<script type="text/javascript" src="../js/contentJS/contentManage.js"></script>
+		<script type="text/javascript" src="../js/equipmentJS/informationCollection.js"></script>
+		<script type="text/javascript" src="../js/equipmentJS/equipmentManage.js"></script>
+		<!-- <script type="text/javascript" src="../js/systemJS/menuManage.js"></script> -->
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/basicinfo/basicinfoCfg.js"></script>
+		<script type="text/javascript" src="../js/userJS/user.js"></script>
+		<script type="text/javascript" src="../js/workOrderJS/workOrder.js"></script>
+		<script type="text/javascript" src="../js/workOrderJS/subOrder.js"></script>
+		<script type="text/javascript" src="../js/workOrderJS/scrapInfo.js"></script>
+		<script type="text/javascript" src="../js/workOrderJS/productionStatistics.js"></script>
+		<script type="text/javascript" src="../js/semifinishedBattery/repairBattery.js"></script>
+		<script type="text/javascript" src="../js/semifinishedBattery/scrapBattery.js"></script>
+		<script type="text/javascript" src="../js/semifinishedBattery/batteryBorrowRerutn.js"></script>
+		<script type="text/javascript" src="../js/report/equipmentRunningStatusMonitor.js"></script>
+		<script type="text/javascript" src="../js/workShift/workShift.js"></script>
+		<script type="text/javascript" src="../js/salesOrderJS/salesOrderTable.js"></script>
+		<script type="text/javascript" src="../js/dataProvenance/DataProvenance.js"></script>
+		<script type="text/javascript" src="../js/dashboardJS/productionDashboard.js"></script>
+		<script type="text/javascript" src="../vendor/echarts/echarts.min.js"></script>
+		<script type="text/javascript" src="../vendor/bootstrap-datatable/bootstrap-table-zh-CN.js"></script>
+		<script type="text/javascript" src="../vendor/bootstrap-table-fixed-columns/bootstrap-table-fixed-columns.js"></script>
+		<script type="text/javascript" src="../vendor/qrcode/jquery.qrcode.js"></script>
+		<script type="text/javascript" src="../vendor/qrcode/qrcode.js"></script>
+		<script type="text/javascript" src="../vendor/jquery/jquery.jqprint-0.3.js"></script>
+		<script type="text/javascript" src="../vendor/jquery/ztree/js/jquery.ztree.core.js"></script>
+		<script type="text/javascript" src="../vendor/jquery/ztree/js/jquery.ztree.excheck.js"></script>
+		<script type="text/javascript" src="../vendor/iCheck/icheck.min.js"></script>
+		<script type="text/javascript" src="../vendor/bootstrap/js/bootstrap-table-treegrid.js"></script>
+		<script type="text/javascript" src="../vendor/jquery/jquery.treegrid.min.js"></script>
+		<script type="text/javascript" src="../js/navLoad/navLoad.js"></script>
+		<script type="text/javascript" src="../js/navLoad/sidebar-menu.js"></script>
+		<script type="text/javascript" src="../vendor/bootstrap/js/bootstrap-treeview.js"></script>
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			if($.cookie('token') == null) {
+				window.location.href = "login.html";
+			} else {
+								initSystemMenu();
+								initSidebarMenu();
+			}
+
+			//初始化icheck显示
+			//			$('.i-checks').iCheck({
+			//				checkboxClass: 'icheckbox_square-green',
+			//				radioClass: 'iradio_square-green',
+			//			});
+		</script>
+
+		<div id="wrapper">
+			<!-- Navigation -->
+			<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+					<a class="navbar-brand" href="index.html">天能濮阳 智能精益生产系统</a>
+				</div>
+				<!-- /.navbar-header -->
+
+				<ul class="nav navbar-top-links navbar-right">
+					<!-- /.dropdown -->
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+						</a>
+						<ul class="dropdown-menu dropdown-user">
+							<li>
+								<a href="#"><i class="fa fa-user fa-fw"></i><b id="loginname"></b></a>
+							</li>
+							<li>
+								<a href="#" onclick="changepassword()"><i class="fa fa-gear fa-fw"></i>修改密码</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#" onclick="logout()"><i class="fa fa-sign-out fa-fw"></i>退出</a>
+							</li>
+						</ul>
+						<!-- /.dropdown-user -->
+					</li>
+					<!-- /.dropdown -->
+				</ul>
+				<!-- /.navbar-top-links -->
+				<div class="navbar-default sidebar" role="navigation">
+					<div class="sidebar-nav navbar-collapse" style="">
+						<ul class="nav" id="ajax-side-menu" style="display: none;">
+							<li class="sidebar-search">
+								<div class="input-group custom-search-form">
+									<input type="text" class="form-control" placeholder="查询...">
+									<span class="input-group-btn">
+																<button class="btn btn-default" type="button">
+																		<i class="fa fa-search"></i>
+																</button>
+														</span>
+								</div>
+								<!-- /input-group -->
+							</li>
+						</ul>
+						<section id="ajax-load-menu">
+						</section>
+						<ul class="nav" id="side-menu">
+							<li class="sidebar-search">
+								<div class="input-group custom-search-form">
+									<input type="text" class="form-control" placeholder="查询...">
+									<span class="input-group-btn">
+																<button class="btn btn-default" type="button">
+																		<i class="fa fa-search"></i>
+																</button>
+														</span>
+								</div>
+								<!-- /input-group -->
+							</li>
+							<li>
+								<a href="index.html"><i class="fa fa-dashboard fa-fw" id="testLi"></i> 首页</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 系统参数配置<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li>
+										<a href="#" onclick="productionLineManage()">产线配置</a>
+									</li>
+									<li>
+										<a href="#" onclick="materialManage()">物料配置</a>
+									</li>
+									<li>
+										<a href="#" onclick="processMaterialRelationManage()">产线物料关系配置</a>
+									</li>
+									<li>
+										<a href="#" onclick="materialRelationManage()">物料关系配置</a>
+									</li>
+									<li>
+										<a href="#" onclick="equipParamRelationManage()">设备采集参数配置</a>
+									</li>
+								</ul>
+								<!-- /.nav-second-level -->
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 极板称重管理<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<!--<li>
+										<a href="#" onclick="workSummary()">称重月工作统计</a>
+									</li>
+									<li>
+										<a href="#" onclick="weighRecord()">称重记录详情查看</a>
+									</li>-->
+									<li>
+										<a href="#" onclick="weighQualify()">称重合格率详情查看</a>
+									</li>
+									<li>
+										<a href="#" onclick="weighQualifySummary()">称重合格率统计报表</a>
+									</li>
+									<li>
+										<a href="#" onclick="staffWeightDetail()">个人称重趋势图</a>
+									</li>
+									<li>
+										<a href="#" onclick="staffWeightTime()">个人称重时间间隔趋势图</a>
+									</li>
+								</ul>
+								<!-- /.nav-second-level -->
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 文档管理<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li>
+										<a href="#" onclick="documentManage()">文档管理</a>
+									</li>
+								</ul>
+								<!-- /.nav-second-level -->
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 看板管理<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li>
+										<a href="#" onclick="productionDashboardManage()">每日产量看板</a>
+									</li>
+								</ul>
+								<!-- /.nav-second-level -->
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 心声社区<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li>
+										<a href="#" onclick="contentManage()">心声社区</a>
+									</li>
+
+								</ul>
+								<!-- /.nav-second-level -->
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>设备管理<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li>
+										<a href="#" onclick="equipmentInfoManage()">设备信息管理</a>
+									</li>
+									<li>
+										<a href="#" onclick="equipmentDataCollector()">设备数据采集</a>
+									</li>
+									<li>
+										<a href="#" onclick="equipmentDataMonitorShow()">设备状态监控</a>
+									</li>
+									<li>
+										<a href="#" onclick="equipParamRecordChartShow()">设备参数变化趋势图</a>
+									</li>
+									<li>
+										<a href="#" onclick="equipParamRecordTableShow()">设备历史参数查看</a>
+									</li>
+								</ul>
+								<!-- /.nav-second-level -->
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-table fa-fw"></i> 权限管理<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li>
+										<a href="#" onclick="user()" )>用户管理</a>
+									</li>
+									<li>
+										<a href="#" onclick="role()">角色管理</a>
+										<a href="#" onclick="menu()">菜单管理</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 工单管理<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li>
+										<a href="#" onclick="workOrderManage()">工单管理</a>
+									</li>
+									<li>
+										<a href="#" onclick="subOrderManage()">工单批次管理</a>
+									</li>
+									<li>
+										<a href="#" onclick="productStatisticsManage()">物料统计</a>
+									</li>
+									<li>
+										<a href="#" onclick="orderScrapManage()">工单报废查询</a>
+									</li>
+									<li>
+										<a href="#" onclick="solidifyProcessManage()">固化管理</a>
+									</li>
+								</ul>
+								<!-- /.nav-second-level -->
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 排班系统<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li>
+										<a href="#" onclick="shiftTeamManage()">班组管理</a>
+									</li>
+									<li>
+										<a href="#" onclick="workShiftManage()">排班班次模板</a>
+									</li>
+									<li>
+										<a href="#" onclick="workShiftRecordManage()">排班记录</a>
+									</li>
+								</ul>
+								<!-- /.nav-second-level -->
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 电池管理<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li>
+										<a href="#" onclick="scrapBatteryManage()">半成品电池报废</a>
+									</li>
+									<li>
+										<a href="#" onclick="repairBatteryManage()">半成品电池维修</a>
+									</li>
+									<li>
+										<a href="#" onclick="batteryBorrowReturnManage()">电池流动管理</a>
+									</li>
+								</ul>
+								<!-- /.nav-second-level -->
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 丝网订单管理<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li>
+										<a href="#" onclick="salesOrderShowTable()">丝网订单查询</a>
+									</li>
+								</ul>
+								<!-- /.nav-second-level -->
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 追溯管理<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li>
+										<a href="#" onclick="orderDataProvenanceTable()">订单追溯</a>
+									</li>
+								</ul>
+								<!-- /.nav-second-level -->
+							</li>
+							<li>
+								<a href="http://192.168.82.253"><i class="fa fa-mail-forward"></i> 镭立MES链接</a>
+							</li>
+						</ul>
+					</div>
+					<!-- /.sidebar-collapse -->
+				</div>
+				<!-- /.navbar-static-side -->
+			</nav>
+			<div id="page-wrapper">
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header" id="container-page-text">首页</h1>
+					</div>
+					<!-- /.col-lg-12 -->
+				</div>
+				<div id="containerHTML">
+					<!-- /.row -->
+					<div class="row">
+						<div class="col-lg-3 col-md-6">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-3">
+											<i class="fa fa-comments fa-5x"></i>
+										</div>
+										<div class="col-xs-9 text-right">
+											<div class="huge">26</div>
+											<div>新消息!</div>
+										</div>
+									</div>
+								</div>
+								<a href="#">
+									<div class="panel-footer">
+										<span class="pull-left">查看详情</span>
+										<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+										<div class="clearfix"></div>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="panel panel-green">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-3">
+											<i class="fa fa-tasks fa-5x"></i>
+										</div>
+										<div class="col-xs-9 text-right">
+											<div class="huge">12</div>
+											<div>新任务!</div>
+										</div>
+									</div>
+								</div>
+								<a href="#">
+									<div class="panel-footer">
+										<span class="pull-left">查看详情</span>
+										<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+										<div class="clearfix"></div>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="panel panel-yellow">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-3">
+											<i class="fa fa-shopping-cart fa-5x"></i>
+										</div>
+										<div class="col-xs-9 text-right">
+											<div class="huge">124</div>
+											<div>新工单!</div>
+										</div>
+									</div>
+								</div>
+								<a href="#">
+									<div class="panel-footer">
+										<span class="pull-left">查看详情</span>
+										<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+										<div class="clearfix"></div>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="panel panel-red">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-3">
+											<i class="fa fa-support fa-5x"></i>
+										</div>
+										<div class="col-xs-9 text-right">
+											<div class="huge">13</div>
+											<div>新告警!</div>
+										</div>
+									</div>
+								</div>
+								<a href="#">
+									<div class="panel-footer">
+										<span class="pull-left">查看详情</span>
+										<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+										<div class="clearfix"></div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<!-- /.row -->
+					<div class="row">
+						<div class="col-lg-8">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<i class="fa fa-bar-chart-o fa-fw"></i> 日产量趋势图
+								</div>
+								<!-- /.panel-heading -->
+								<div class="panel-body">
+									<div id="morris-area-chart"></div>
+								</div>
+								<!-- /.panel-body -->
+							</div>
+							<!-- /.panel -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<i class="fa fa-bar-chart-o fa-fw"></i> 当日任务完成率
+								</div>
+								<!-- /.panel-heading -->
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-lg-4">
+											<div class="table-responsive">
+												<table class="table table-bordered table-hover table-striped">
+													<thead>
+														<tr>
+															<th>工序</th>
+															<th>日期</th>
+															<th>时间</th>
+															<th>完成率</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>涂板</td>
+															<td>2018.12.12</td>
+															<td>15:30</td>
+															<td>80%</td>
+														</tr>
+														<tr>
+															<td>分板</td>
+															<td>2018.12.12</td>
+															<td>15:30</td>
+															<td>73%</td>
+														</tr>
+														<tr>
+															<td>包板</td>
+															<td>2018.12.12</td>
+															<td>15:30</td>
+															<td>92%</td>
+														</tr>
+														<tr>
+															<td>铸焊</td>
+															<td>2018.12.12</td>
+															<td>15:30</td>
+															<td>86%</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<!-- /.table-responsive -->
+										</div>
+										<!-- /.col-lg-4 (nested) -->
+										<div class="col-lg-8">
+											<div id="morris-bar-chart"></div>
+										</div>
+										<!-- /.col-lg-8 (nested) -->
+									</div>
+									<!-- /.row -->
+								</div>
+								<!-- /.panel-body -->
+							</div>
+							<!-- /.panel -->
+						</div>
+						<!-- /.col-lg-8 -->
+						<div class="col-lg-4">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<i class="fa fa-bell fa-fw"></i> 重要提示
+								</div>
+								<!-- /.panel-heading -->
+								<div class="panel-body">
+									<div class="list-group">
+										<a href="#" class="list-group-item">
+											<i class="fa fa-comment fa-fw"></i> 提示一
+											<span class="pull-right text-muted small"><em>4分钟以前</em>
+                                    </span>
+										</a>
+										<a href="#" class="list-group-item">
+											<i class="fa fa-envelope fa-fw"></i> 提示二
+											<span class="pull-right text-muted small"><em>27分钟以前</em>
+                                    </span>
+										</a>
+										<a href="#" class="list-group-item">
+											<i class="fa fa-tasks fa-fw"></i> 提示三
+											<span class="pull-right text-muted small"><em>43分钟以前</em>
+                                    </span>
+										</a>
+										<a href="#" class="list-group-item">
+											<i class="fa fa-upload fa-fw"></i> 提示四
+											<span class="pull-right text-muted small"><em>11:32</em>
+                                    </span>
+										</a>
+										<a href="#" class="list-group-item">
+											<i class="fa fa-warning fa-fw"></i> 提示五
+											<span class="pull-right text-muted small"><em>10:57</em>
+                                    </span>
+										</a>
+										<a href="#" class="list-group-item">
+											<i class="fa fa-shopping-cart fa-fw"></i> 提示六
+											<span class="pull-right text-muted small"><em>9:49</em>
+                                    </span>
+										</a>
+										<a href="#" class="list-group-item">
+											<i class="fa fa-money fa-fw"></i> 提示七
+											<span class="pull-right text-muted small"><em>昨天</em>
+                                    </span>
+										</a>
+									</div>
+									<!-- /.list-group -->
+									<a href="#" class="btn btn-default btn-block">全部重要提示</a>
+								</div>
+								<!-- /.panel-body -->
+							</div>
+							<!-- /.panel -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<i class="fa fa-bar-chart-o fa-fw"></i> 各型号电池库存率
+								</div>
+								<div class="panel-body">
+									<div id="morris-donut-chart"></div>
+									<a href="#" class="btn btn-default btn-block">查看详情</a>
+								</div>
+								<!-- /.panel-body -->
+							</div>
+						</div>
+						<!-- /.col-lg-4 -->
+					</div>
+					<!-- /.row -->
+				</div>
+			</div>
+			<!-- /#page-wrapper -->
+		</div>
+		<!-- /#wrapper -->
+
+		<script>
+			document.getElementById("loginname").innerText = $.cookie("username");
+
+			function workSummary() {
+				document.getElementById("container-page-text").innerHTML = "极板称重月度统计";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/plateWeighReport/worksumExcel.html');
+			};
+
+			function weighRecord() {
+				document.getElementById("container-page-text").innerHTML = "极板称重记录";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/plateWeighReport/plateweigh.html');
+			};
+
+			function weighQualify() {
+				document.getElementById("container-page-text").innerHTML = "极板称重合格率详情";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/plateWeighReport/qualifiedRate.html');
+			};
+
+			function weighQualifySummary() {
+				document.getElementById("container-page-text").innerHTML = "极板称重合格率统计";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/plateWeighReport/qualifiedRateSummary.html');
+			};
+
+			function staffWeightDetail() {
+				document.getElementById("container-page-text").innerHTML = "个人称重趋势图";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/plateWeighReport/staffWeightShow.html');
+			};
+
+			function staffWeightTime() {
+				document.getElementById("container-page-text").innerHTML = "个人称重时间间隔趋势图";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/plateWeighReport/staffWeightTimeInterval.html');
+			};
+
+			function documentManage() {
+				document.getElementById("container-page-text").innerHTML = "文档管理";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/documentManage/document.html');
+			};
+
+			function contentManage() {
+				document.getElementById("container-page-text").innerHTML = "心声社区";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/contentManage/publishIdea.html');
+			};
+
+			function workOrderManage() {
+				document.getElementById("container-page-text").innerHTML = "工单管理";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/workOrder/workOrderManage.html');
+			};
+
+			function subOrderManage() {
+				document.getElementById("container-page-text").innerHTML = "工单批次";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/workOrder/subOrder.html');
+			};
+
+			function productStatisticsManage() {
+				document.getElementById("container-page-text").innerHTML = "物料统计";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/workOrder/productionStatistics.html');
+			};
+
+			function orderScrapManage() {
+				document.getElementById("container-page-text").innerHTML = "工单报废查询";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/workOrder/scrapInfo.html');
+			};
+
+			function equipmentInfoManage() {
+				document.getElementById("container-page-text").innerHTML = "设备信息管理";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/equipmentManage/equipmentManage.html');
+			};
+
+			function equipmentDataCollector() {
+				document.getElementById("container-page-text").innerHTML = "设备数据采集";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/equipmentManage/informationCollection.html');
+			};
+
+			function equipmentDataMonitorShow() {
+				document.getElementById("container-page-text").innerHTML = "设备状态监控";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/report/equipmentRunningStatussMonitor.html');
+			};
+
+			function equipParamRecordChartShow() {
+				document.getElementById("container-page-text").innerHTML = "设备参数变化趋势图";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/report/equipParamRecordShow.html');
+			};
+
+			function equipParamRecordTableShow() {
+				document.getElementById("container-page-text").innerHTML = "设备历史参数查看";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/report/equipParamRecordTable.html');
+			};
+
+			function user() {
+				document.getElementById("container-page-text").innerHTML = "用户管理";
+				$("#containerHTML").empty();
+				// $("#containerHTML").load('../pages/rights/user.html');
+				$("#containerHTML").load('../pages/system/user/user.html');
+			};
+
+			function role() {
+				document.getElementById("container-page-text").innerHTML = "角色管理";
+				$("#containerHTML").empty();
+				// $("#containerHTML").load('../pages/rights/user.html');
+				$("#containerHTML").load('../pages/system/role/role.html');
+			};
+
+			function menu() {
+				document.getElementById("container-page-text").innerHTML = "菜单管理";
+				$("#containerHTML").empty();
+				// $("#containerHTML").load('../pages/rights/user.html');
+				$("#containerHTML").load('../pages/system/menu/menu.html');
+
+			};
+
+			function changepassword() {
+				document.getElementById("container-page-text").innerHTML = "修改密码";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/rights/changepassword.html');
+			};
+
+			function productionLineManage() {
+				document.getElementById("container-page-text").innerHTML = "产线配置";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/basicInfoConfig/lineConfig.html');
+			};
+
+			function materialManage() {
+				document.getElementById("container-page-text").innerHTML = "物料配置";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/basicInfoConfig/materialConfig.html');
+			};
+
+			function processMaterialRelationManage() {
+				document.getElementById("container-page-text").innerHTML = "流程物料关系配置";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/basicInfoConfig/processMaterialConfig.html');
+			};
+
+			function materialRelationManage() {
+				document.getElementById("container-page-text").innerHTML = "物料关系配置";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/basicInfoConfig/materialMaterialConfig.html');
+			};
+
+			function equipParamRelationManage() {
+				document.getElementById("container-page-text").innerHTML = "设备采集参数配置";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/basicInfoConfig/equipmentParamConfig.html');
+			};
+
+			function solidifyProcessManage() {
+				document.getElementById("container-page-text").innerHTML = "固化管理";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/workOrder/solidifyProcess.html');
+			};
+
+			function shiftTeamManage() {
+				document.getElementById("container-page-text").innerHTML = "班组管理";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/workShift/shiftTeamManage.html');
+			};
+
+			function workShiftManage() {
+				document.getElementById("container-page-text").innerHTML = "排班班次模板";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/workShift/workShiftManage.html');
+			};
+
+			function workShiftRecordManage() {
+				document.getElementById("container-page-text").innerHTML = "排班记录";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/workShift/workShiftRecordManage.html');
+			};
+
+			function salesOrderShowTable() {
+				document.getElementById("container-page-text").innerHTML = "丝网订单查询";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/salesOrder/salesOrderInfoTable.html');
+			}
+
+			function orderDataProvenanceTable() {
+				document.getElementById("container-page-text").innerHTML = "订单追溯";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/dataProvenance/dataProvenanceTable.html');
+			}
+
+			function scrapBatteryManage() {
+				document.getElementById("container-page-text").innerHTML = "电池报废";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/semifinishedBattery/batteryScrap.html');
+			}
+
+			function repairBatteryManage() {
+				document.getElementById("container-page-text").innerHTML = "电池报修";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/semifinishedBattery/batteryRepair.html');
+			}
+
+			function batteryBorrowReturnManage() {
+				document.getElementById("container-page-text").innerHTML = "电池流动记录";
+				$("#containerHTML").empty();
+				$("#containerHTML").load('../pages/semifinishedBattery/batteryBorrowReturn.html');
+			}
+
+			function productionDashboardManage() {
+				document.getElementById("container-page-text").innerHTML = "每日产量看板";
+				window.open("../pages/dashboard/productionDashboard.html");
+			}
+
+			function logout() {
+				$.cookie("token", "", {
+					expires: -1
+				});
+				window.location.href = "login.html";
+			};
+
+			var websocket = null;
+
+			//判断当前浏览器是否支持WebSocket
+			if('WebSocket' in window) {
+				websocket = new WebSocket("ws://192.168.1.106:8080/websocket");
+			} else {
+				alert('Not support websocket')
+			}
+
+			//连接发生错误的回调方法
+			websocket.onerror = function() {
+				setMessageInnerHTML("error");
+			};
+
+			//连接成功建立的回调方法
+			websocket.onopen = function(event) {
+				setMessageInnerHTML("open");
+				send($.cookie('token'));
+			}
+
+			//接收到消息的回调方法
+			websocket.onmessage = function(event) {
+				setMessageInnerHTML(event.data);
+			}
+
+			//连接关闭的回调方法
+			websocket.onclose = function() {
+				setMessageInnerHTML("close");
+			}
+
+			//监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+			window.onbeforeunload = function() {
+				websocket.close();
+			}
+
+			//将消息显示在网页上
+			function setMessageInnerHTML(innerHTML) {
+				//alert(innerHTML);
+				// document.getElementById('message').innerHTML += innerHTML + '<br/>';
+			}
+
+			//关闭连接
+			function closeWebSocket() {
+				websocket.close();
+			}
+
+			//发送消息
+			function send(message) {
+				//var message = document.getElementById('text').value;
+				websocket.send(message);
+			}
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>天能（濮阳）</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../vendor/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../vendor/login/css/form-elements.css">
+        <link rel="stylesheet" href="../vendor/login/css/style.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="../vendor/login/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../vendor/login/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../vendor/login/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../vendor/login/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="../vendor/login/ico/apple-touch-icon-57-precomposed.png">
+
+        <!-- Javascript -->
+        <!--<script src="../vendor/jquery/jquery.min.js"></script>-->
+        <script src="../vendor/jquery/jquery.min.js"></script>
+        <script src="../vendor/jquery/jquery.cookie.js"></script>
+       
+        <script src="../vendor/login/js/jquery.backstretch.min.js"></script>
+         <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+   
+        <script src="../vendor/login/js/scripts.js"></script>
+        <script src="../js/common.js"></script>
+    </head>
+
+    <body>
+
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1><strong>天能（濮阳）集团</strong>  智能精益生产系统</h1>
+                            <div class="description">
+                            	<p>
+	                            	为了让我们的生产流程信息化、智能化而不断努力！
+                            	</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3>系统登录</h3>
+                            		<p id="hintinfo">请输入您的用户名和密码：</p>
+                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-key"></i>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+			                     <form  action="" method="post" class="login-form" onsubmit="return login()">
+			                    	<div class="form-group">
+			                <!--    		<label class="sr-only" for="form-username">Username</label>-->
+			                        	<input type="text" name="form-username" placeholder="用户名" class="form-username form-control" id="form-username" required>
+			                        </div>
+			                        <div class="form-group">
+			                        	<!--<label class="sr-only" for="form-password">Password</label>-->
+			                        	<input type="password" name="form-password" placeholder="密码" class="form-password form-control" id="form-password" required>
+			                        </div>
+			                    <!--    <a href="index.html" class="btn btn-lg btn-success btn-block">登录</a>-->
+										<button type="submit" class="btn">登录</button>
+			                    </form>
+		                    </div>
+                        </div>
+                    </div>
+                    <br /><br />
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 social-login">
+                        	<h3>相关网站</h3>
+                        	<div class="social-login-buttons">
+	                        	<a class="btn btn-link-1 " style="background-color:darkgreen" href="http://www.cn-tn.com/">
+	                        		<i class="fa fa-heart "></i> 天能集团
+	                        	</a>
+	                        	<a class="btn btn-link-1 "  style="background-color:darkslateblue" href="http://www.tianneng.com.hk/s/index.php">
+	                        		<i class="fa fa-star  "></i> 天能动力
+	                        	</a>
+	                        	<a class="btn btn-link-1" style="background-color:darkblue" href="https://www.baidu.com">
+	                        		<i class="fa fa-eject"></i> 百度一下
+	                        	</a>
+                        	</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="copyrights">Collect from <a href="http://www.cssmoban.com/"  title="网站模板">网站模板</a></div>
+
+
+
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+		<script type="text/javascript">
+			function login(){
+
+
+				var username=document.getElementById("form-username").value;
+				var password=document.getElementById("form-password").value;
+			    $.ajax({
+					type : 'POST',
+					url : window.serviceIP+ '/api/login',
+					dataType: "json",
+					data:{'username':username,"password":password},
+					async:true,//设置为false时,timeout不生效
+					timeout: 5000,
+					success : function(result){
+
+						if(result.status=="1"){
+							//alert(result.token)
+							$.cookie('token', result.token); 
+							$.cookie('username', result.message.split("###")[0].trim());
+							$.cookie('userID', username);
+							$.cookie('roleID', result.message.split("###")[1].trim());
+							$.cookie('password', password);
+							
+							if(result.message.split("###")[2].trim() != "-1" && result.message.split("###")[2].trim() != "null" && result.message.split("###")[2].trim().length > 1)
+							{
+								$.cookie('plantID', result.message.split("###")[2].trim());
+							}
+							if(result.message.split("###")[3].trim() != "-1" && result.message.split("###")[3].trim() != "null" && result.message.split("###")[3].trim().length > 1)
+							{
+								$.cookie('processID', result.message.split("###")[3].trim());
+							}
+							if(result.message.split("###")[4].trim() != "-1" && result.message.split("###")[4].trim() != "null" && result.message.split("###")[4].trim().length > 1)
+							{
+								$.cookie('lineID', result.message.split("###")[4].trim());
+							}
+							
+							if(result.message.split("###")[1].trim() == "24")
+							{
+								window.location.href="productionIndex.html"; 
+							}
+							else
+							{
+								window.location.href="main.html"; 
+							}
+							
+						}else{
+							var hintinfo=document.getElementById("hintinfo");
+							hintinfo.innerText="用户名或密码错误，请重新填写。";
+						}
+					},
+					 error: function (xhr, status, err) {
+//					 	alert('出现错误,请联系管理员!')
+      				},
+			      	complete: function (XMLHttpRequest, status) { //当请求完成时调用函数
+			      		
+			        	if (status == 'timeout') {//status == 'timeout'意为超时,status的可能取值：success,notmodified,nocontent,error,timeout,abort,parsererror 
+			          		alert(status + "网络连接超时, 请检查网络" )
+			        	}
+			      	}
+				});   
+				return false;
+			}
+		</script>
+    </body>
+
+</html>

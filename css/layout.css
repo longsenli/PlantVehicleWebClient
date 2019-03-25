@@ -1,0 +1,125 @@
+/*主面板样式*/
+#container {
+/*width:980px;*/
+width:100%;
+height:auto;
+dispaly:table;
+margin:100px,300px,300px,300px ;/*主面板DIV居中*/
+}
+/*顶部面板样式*/
+#header {
+width:100%;
+_height:50px; 
+min-height:50px;
+text-align:center;
+margin:0 auto;
+background-color: lightseagreen;
+/*border:1px #F00 solid;*/
+}
+/*中间部分面板样式*/
+#main {
+width:100%;
+height:80%;
+_height:50px; 
+min-height:50px;
+/*border:1px #F00 solid;*/
+}
+#header img{
+	width:60%;
+    height:100%;
+}
+/*底部面板样式*/
+#footer {
+	 position: relative;
+width:100%;
+height:10%;
+_height:50px; 
+min-height:50px;
+/*border:1px #F00 solid;*/
+margin: auto;
+}
+#reportSummary {
+width:300px;
+height:700px;
+padding-left:20px;
+/*border:1px #F00 solid;*/
+}
+#report {
+width:800px;
+height:700px;
+padding-left:200px;
+/*margin:0 auto;*/
+/*border:1px #F00 solid;*/
+}
+
+
+#textInut{
+	text-align: center;
+	font: size="3" color="red";
+	float: left;
+}
+#mainleft{
+	width:20%;
+	height:auto;
+	float: left;
+	background-color: gainsboro;
+}
+#mainleftTop{
+	text-align:right;
+right:0px;
+top:0px;
+z-index:100;
+}
+#mainControlLeft{
+	width:2%;
+	height:auto;
+	float: left;
+	background-color: gainsboro;
+}
+#mainright{
+	width:75%;
+	height:100%;
+	float: left;
+	margin: 10px,10px,10px,10px;
+}
+#splitLine{
+	width: 100%;
+	height: 5px;
+}
+/*form
+{
+	padding:5px;
+	margin:5px;
+}*/
+
+.TempContral{
+	float: left;
+	background-color:#6699FF;
+	margin-left: 10px;
+	margin-top: 10px;
+	min-width:150px;
+	min-height:60px;
+	//color: black;
+	color: white;
+	font-size: 20px;
+	font-weight:bold;
+	//border: dotted;
+}
+.TempContralInner{
+
+	float: left;
+	background-color:#3A006F;
+	margin-left: 5px;
+	margin-top: 5px;
+	//border: dotted;
+	text-align:center ;
+	color: white;
+	font-size: 14px;
+	//line-height:50px;
+}
+.fontStyle{
+	//color: black;
+	color: white;
+	font-size: 20px;
+	font-weight:bold;
+}
