@@ -48,11 +48,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1><strong>天能（濮阳）集团</strong>  智能精益生产系统</h1>
+                            <h1><strong>天能（濮阳）集团</strong>  车辆管理系统</h1>
                             <div class="description">
-                            	<p>
-	                            	为了让我们的生产流程信息化、智能化而不断努力！
-                            	</p>
                             </div>
                         </div>
                     </div>
@@ -84,27 +81,10 @@
                         </div>
                     </div>
                     <br /><br />
-                    <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3 social-login">
-                        	<h3>相关网站</h3>
-                        	<div class="social-login-buttons">
-	                        	<a class="btn btn-link-1 " style="background-color:darkgreen" href="http://www.cn-tn.com/">
-	                        		<i class="fa fa-heart "></i> 天能集团
-	                        	</a>
-	                        	<a class="btn btn-link-1 "  style="background-color:darkslateblue" href="http://www.tianneng.com.hk/s/index.php">
-	                        		<i class="fa fa-star  "></i> 天能动力
-	                        	</a>
-	                        	<a class="btn btn-link-1" style="background-color:darkblue" href="https://www.baidu.com">
-	                        		<i class="fa fa-eject"></i> 百度一下
-	                        	</a>
-                        	</div>
-                        </div>
-                    </div>
                 </div>
             </div>
             
         </div>
-        <div class="copyrights">Collect from <a href="http://www.cssmoban.com/"  title="网站模板">网站模板</a></div>
 
 
 
@@ -124,39 +104,11 @@
 					dataType: "json",
 					data:{'username':username,"password":password},
 					async:true,//设置为false时,timeout不生效
-					timeout: 5000,
+					timeout: 50000,
 					success : function(result){
 
 						if(result.status=="1"){
-							//alert(result.token)
-							$.cookie('token', result.token); 
-							$.cookie('username', result.message.split("###")[0].trim());
-							$.cookie('userID', username);
-							$.cookie('roleID', result.message.split("###")[1].trim());
-							$.cookie('password', password);
-							
-							if(result.message.split("###")[2].trim() != "-1" && result.message.split("###")[2].trim() != "null" && result.message.split("###")[2].trim().length > 1)
-							{
-								$.cookie('plantID', result.message.split("###")[2].trim());
-							}
-							if(result.message.split("###")[3].trim() != "-1" && result.message.split("###")[3].trim() != "null" && result.message.split("###")[3].trim().length > 1)
-							{
-								$.cookie('processID', result.message.split("###")[3].trim());
-							}
-							if(result.message.split("###")[4].trim() != "-1" && result.message.split("###")[4].trim() != "null" && result.message.split("###")[4].trim().length > 1)
-							{
-								$.cookie('lineID', result.message.split("###")[4].trim());
-							}
-							
-							if(result.message.split("###")[1].trim() == "24")
-							{
-								window.location.href="productionIndex.html"; 
-							}
-							else
-							{
-								window.location.href="main.html"; 
-							}
-							
+							window.location.href="main.html"; 
 						}else{
 							var hintinfo=document.getElementById("hintinfo");
 							hintinfo.innerText="用户名或密码错误，请重新填写。";

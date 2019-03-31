@@ -1,6 +1,6 @@
 $(function () {
 	//动态加载用户菜单，关闭请注释掉此方法
-	initSystemMenu();
+//	initSystemMenu();
 	function initSystemMenu() {
 	var isFirstMenu;
 	var userName = $.cookie('username');

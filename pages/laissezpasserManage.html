@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="../vendor/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../vendor/jquery/jquery.cookie.js"></script>
+	<script type="text/javascript" src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../vendor/boostrap-select/bootstrap-select.min.js"></script>
+	<script type="text/javascript" src="../vendor/bootstrap-datatable/bootstrap-table.js"></script>
+	<script type="text/javascript" src="../js/common.js"></script>
+	<script type="text/javascript" src="../vendor/bootstrap-datatable/bootstrap-table-zh-CN.js"></script>
+	<script type="text/javascript" src="../vendor/jquery/ztree/js/jquery.ztree.core.js"></script>
+	<script type="text/javascript" src="../vendor/jquery/ztree/js/jquery.ztree.excheck.js"></script>
+	<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap-switch.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="../vendor/boostrap-select/bootstrap-select.min.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="../vendor/bootstrap-datatable/bootstrap-table.css" media="screen">
+	<link type="text/css" media="screen" href="../vendor/ry/ajax/libs/iCheck/custom.css"  rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="../vendor/jquery/ztree/css/bootstrapStyle/bootstrapStyle.css" >
+	<link href="../vendor/hplus/css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+	<body>
+		<section class="content table-content">
+			<form class="form-inline" >
+			<!-- 工具栏 -->
+			<div id="toolbar">
+					<button type="button" class="btn btn-success" onclick="showAddModal()">
+		              <i class="glyphicon glyphicon-plus" aria-hidden="true">新增车辆通行证</i>
+		            </button>
+		            <button type="button" class="btn btn-warning" onclick="showEditModal()">
+		              <i class="glyphicon glyphicon-edit" aria-hidden="true">修改车辆通行证</i>
+		            </button>
+		            <button type="button" class="btn btn-danger"  onclick="confirmDel()">
+		              <i class="glyphicon glyphicon-remove" aria-hidden="true">删除车辆通行证</i>
+		            </button>
+			</div>
+			<!-- bootstrapTable -->
+			</form>
+			<table id="dataGrid">
+			</table>
+		</section>
+		<div class="modal fade" id="addOrUpdateModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop='static' style="overflow: auto" aria-labelledby="exampleModalLabel">
+			  <div class="modal-dialog" >
+			    <div class="modal-content">
+			    	<div class="modal-header" align="center">
+						<a href="#" class="close" data-dismiss="modal">
+                           	关闭
+                        </a>
+						<h4 class="modal-title" id="myModalLabel" align="center"> <h2 ><strong>车辆通行证信息登记</strong></h2> </h4>
+					</div>
+			      <div class="modal-body">
+			       <form id="vehicleRegisterForm" action="" method="post" class="form-horizontal">
+							<input type="hidden" id="inputid" name="inputid"  class="form-control">
+							<div class="form-group">
+								<label for="inputAccount" class="col-sm-3 control-label">通行证号</label>
+								<div class="col-sm-7">
+									<input type="text" id="inputlaissezpasserid" name="laissezpasserid" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入通行证号 ( 必填项 )" required="required">
+								</div>
+							</div>
+							<div class="form-group" >
+								<label for="inputPassword" class="col-sm-3 control-label">车牌号</label>
+								<div class="col-sm-7">
+									<input type="text" id="inputcarLicence" name="carlicence" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入车牌号 ( 必填项 )" required="required">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputName" class="col-sm-3 control-label">停车位置</label>
+								<div class="col-sm-7">
+									<input type="text" id="inputstoplocation" name="stoplocation" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入停车位置" >
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputDutyid" class="col-sm-3 control-label">有效期开始时间</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" placeholder="请选择有效期开始时间" id="inputstarttime" name="starttime" required="required">
+								</div>
+							</div>
+							<div class="form-group">
+							    <label for="email" class="col-sm-3 control-label">有效期结束时间</label>	
+							    <div class="col-sm-7">	
+							    	<input type="text" class="form-control" placeholder="请选择有效期结束时间" id="inputendtime" name="endtime" required="required">
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label for="email" class="col-sm-3 control-label">办证日期</label>	
+							    <div class="col-sm-7">	
+							    	<input type="text" class="form-control" placeholder="请选择办证日期" id="inputupdatetime" name="updatetime" required="required">
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label for="email" class="col-sm-3 control-label">办证人员</label>	
+							    <div class="col-sm-7">	
+							    	<input type="text" id="inputoperator" name="operator" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入办证人员" required="required">
+							    </div>
+							</div>
+							<div class="form-group">
+								<label for="inputWorkplace" class="col-sm-3 control-label">状态</label>
+								<div class="col-sm-7">
+									<input type="text" id="inputstatus" name="status" class="form-control" style="display: none;" placeholder="" >
+								</div>
+							</div>
+							<button type="button" class="btn btn-primary block full-width m-b" id='sendBT' onclick="laissisrequired('add')">登&nbsp;&nbsp;记</button>
+						</form>
+			      </div>
+			    </div>
+			  </div>
+		</div>
+		<div class="modal fade" id="confirmDelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+			  <div class="modal-dialog" >
+			    <div class="modal-content">
+			      <div class="modal-body">
+			        <form>
+							<input id="delMenuId" name="parentId" type="hidden"  />
+			       	<div class="form-group">
+			            <label for="message-text" class="control-label">确定要删除吗？</label>
+			          </div>
+			        </form>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">取消删除</button>
+			        <button type="button" class="btn btn-danger"  data-dismiss="modal" onclick="deleteLaissezpasser()">确定删除</button>
+			      </div>
+			    </div>
+			  </div>
+		</div>
+</body>
+</html>
+<script src="../vendor/laydate/laydate.js"></script> <!-- 改成你的路径 -->
+<!-- 车辆管理初始化调用javascript -->
+<script type="text/javascript">
+	$(function(){
+		$("input[type='text']").each(function(index,item){
+//			var name = $(this).attr("name");    //获取name值
+//			var val = $(this).val();            //获取value值
+ 			$(this).attr("maxlength","50");
+		});
+	 });
+$(function() {
+	$('#addOrUpdateModal').on('hide.bs.modal',
+		function() {
+			$('#inputcarLicence').removeAttr("readonly");//去除input元素的readonly属性
+			$('#sendBT').attr('onclick','isrequired("add")');
+			document.getElementById("sendBT").innerText='登  记';
+			document.getElementById("vehicleRegisterForm").reset();
+		})
+});
+	//执行一个laydate实例
+	laydate.render({
+	  	elem: '#inputregistrationtime', //需显示日期的元素选择器
+	  	value: new Date()
+	});
+	laydate.render({
+	  	elem: '#inputstarttime', //需显示日期的元素选择器
+	  	value: new Date()
+	});
+	laydate.render({
+	  	elem: '#inputendtime', //需显示日期的元素选择器
+	  	value: new Date()
+	});
+	laydate.render({
+	  	elem: '#inputupdatetime', //需显示日期的元素选择器
+	  	value: new Date()
+	});
+function isrequired(flag){
+	if ( $("#inputlaissezpasserid").val() == '' )
+		{alert($("#inputlaissezpasserid").attr('placeholder'));$("#inputlaissezpasserid").focus();return false;}
+	if ( $("#inputcarLicence").val() == '' )
+		{alert($("#inputcarLicence").attr('placeholder'));$("#inputcarLicence").focus();return false;}
+//	if ( $("#inputdriverName").val() == '' )
+//	    {alert($("#inputdriverName").attr('placeholder'));$("#inputdriverName").focus();return false;}
+	if ( $("#inputstoplocation").val() == '' )
+		{alert($("#inputstoplocation").attr('placeholder'));$("#inputstoplocation").focus();return false;}
+	if ( $("#inputstarttime").val() == '' )
+		{alert($("#inputstarttime").attr('placeholder'));$("#inputstarttime").focus();return false;}
+	if ( $("#inputendtime").val() == '' )
+		{alert($("#inputendtime").attr('placeholder'));$("#inputendtime").focus();return false;}
+	if ( $("#inputupdatetime").val() == '' )
+		{alert($("#inputupdatetime").attr('placeholder'));$("#inputupdatetime").focus();return false;}
+	if ( $("#inputoperator").val() == '' )
+		{alert($("#inputoperator").attr('placeholder'));$("#inputoperator").focus();return false;}
+	if ( $("#inputregistrationtime").val() == '' )
+		{alert($("#inputregistrationtime").attr('placeholder'));$("#inputregistrationtime").focus();return false;}
+	if(flag=='update'){
+		updateLaissezpasser();
+	}
+	if(flag=='add'){
+		laissezpasserRegister();
+	}
+}
+	
+initDataGrid();
+function initDataGrid(){
+	var columnsArray = [];
+	columnsArray.push({
+		radio: true
+	});
+	columnsArray.push({
+		"title": "ID",
+		"field": "id",
+		 "visible":false
+	});
+	columnsArray.push({
+		"title": "通行证号",
+		"field": "laissezpasserid"
+	});
+	columnsArray.push({
+		"title": "车牌号",
+		"field": "carlicence"
+	});
+	columnsArray.push({
+		"title": "停车位置",
+		"field": "stoplocation"
+	});
+	columnsArray.push({
+		"title": "有效期开始时间",
+		"field": "starttime"
+	});
+	columnsArray.push({
+		"title": "有效期结束时间",
+		"field": "endtime"
+	});
+	columnsArray.push({
+		"title": "办证日期",
+		"field": "updatetime"
+	});
+	columnsArray.push({
+		"title": "办证人员",
+		"field": "operator"
+	});
+	columnsArray.push({
+		"title": "状态",
+		"field": "status",
+		"visible":false,
+		align: 'center',
+		formatter: function(value, row, index) {
+			if (value == '1') {
+				return '<span class="badge badge-primary">正常</span>';
+			} else if (value == '0') {
+				return '<span class="badge badge-danger">停用</span>';
+			}
+		}
+	});
+	$.ajax({
+		url: window.serviceIP + "/laissezpasser/listLaissezpassers",
+		type: "POST",
+		contentType: "application/json",
+		dataType: "json",
+		//		headers: {
+		//			Token: $.cookie('token')
+		//		},
+		processData: true,
+		success: function(dataRes) {
+			if(dataRes.status == 1) { 
+				var models = eval("(" + dataRes.data + ")");
+				 console.log(models);
+				$('#dataGrid').bootstrapTable('destroy').bootstrapTable({
+					data: models,
+					toolbar: '#toolbar',
+					singleSelect: true,
+					clickToSelect: true,
+					sortName: "recordTime",
+					sortOrder: "desc",
+					pageSize: 15,
+					pageNumber: 1,
+					pageList: "[10, 25, 50, 100, All]",
+					showToggle: true,
+					showRefresh: true,
+					showColumns: true,
+					search: true,
+					pagination: true,
+					columns: columnsArray
+				});
+			} else {
+				alert("初始化数据失败！" + dataRes.message);
+			}
+		}
+	});
+}
+
+//新增通行证
+function showAddModal(){
+	$("#addOrUpdateModal").modal('show');
+}
+//新通行证登记
+	function laissezpasserRegister(){
+		var param = $("#vehicleRegisterForm").serializeArray();
+	//	alert($("#industrialplant_id").find("option:selected").text());
+		debugger;
+		$.ajax({
+			url: window.serviceIP + "/laissezpasser/laissezpasserRegister",
+			method:"post",
+			data:param,
+			dataType:"json",
+			success:function(data){
+				// alert("新增成功");
+				if(data.status=="1"){
+					alert(data.message);
+					$('#sendBT').attr('onclick','isrequired("add")');
+					document.getElementById("vehicleRegisterForm").reset();
+					$('#addOrUpdateModal').modal('hide')
+					initDataGrid();
+				}
+				else{
+					alert(data.message);
+				}
+			},
+			error:function(){
+			}
+		});
+	}
+
+//加载要修改车辆信息
+function showEditModal(){
+	//获取选中行的数据
+	var rows = $("#dataGrid").bootstrapTable('getSelections');
+	if(rows.length!=1){
+		alert('请选择一行数据！')
+	}
+	else{
+		var row = rows[0];
+		$('#inputid').attr('readonly','readonly');
+		$('#inputid').val(row.id);
+		$('#inputlaissezpasserid').val(row.laissezpasserid);
+		$('#inputcarLicence').val(row.carlicence);
+		$('#inputstoplocation').val(row.stoplocation);
+		$('#inputstarttime').val(row.starttime);
+		$('#inputendtime').val(row.endtime);
+		$('#inputupdatetime').val(row.updatetime);
+		$('#inputoperator').val(row.operator);
+		$('#inputstatus').val(row.status);
+		document.getElementById("sendBT").innerText='保  存';
+		$('#sendBT').attr('onclick','isrequired("update")');
+		$("#addOrUpdateModal").modal('show');
+	}
+}
+
+////修改车辆信息
+	function updateLaissezpasser(){
+		var param = $("#vehicleRegisterForm").serializeArray();
+		param.push({
+				"name": "id",
+				"value": $('#inputid').val()
+			});
+//		alert($("#industrialplant_id").find("option:selected").text());
+		debugger;
+		$.ajax({
+			url: window.serviceIP + "/laissezpasser/updateLaissezpasser",
+			method:"post",
+			data:param,
+			dataType:"json",
+			success:function(data){
+				// alert("新增成功");
+				if(data.status=="1"){
+					alert(data.message);
+					document.getElementById("vehicleRegisterForm").reset();
+					$('#addOrUpdateModal').modal('hide')
+					initDataGrid();
+				}
+				else{
+					alert(data.message);
+				}
+			},
+			error:function(){
+			}
+		});
+	}
+function confirmDel(){
+	//获取选中行的数据
+	var rows = $("#dataGrid").bootstrapTable('getSelections');
+	if(rows.length!=1){
+		alert('请选择一行数据！')
+	}
+	else{
+		$("#confirmDelModal").modal('show');
+	}
+}
+
+/**
+ * 删除角色提交方法
+ */
+function deleteLaissezpasser(){
+		var rows = $("#dataGrid").bootstrapTable("getSelections");
+		var ids = [];
+		var len = rows.length;
+		debugger;
+		for(var i=0;i<len;i++){
+			ids.push(rows[i].id);
+		}
+		debugger;
+		$.ajax({
+			url:window.serviceIP + "/laissezpasser/deleteLaissezpasser",
+			dataType:"json",
+			traditional: true,//属性在这里设置
+			method:"post",
+			data:{
+				"ids":ids
+			},
+			success:function(data){
+				// alert(data.state);
+				if(data.status == '1'){
+					alert('删除成功');
+					initDataGrid();
+				}
+// 						document.getElementById("tipContent").innerText="删除成功";
+// 						$("#Tip").modal('show');
+				
+				// $("#dataGrid").bootstrapTable("refresh");
+			},
+			error:function(){
+				document.getElementById("tipContent").innerText="删除失败";
+				$("#Tip").modal('show');
+			}
+		});
+	}
+</script>
