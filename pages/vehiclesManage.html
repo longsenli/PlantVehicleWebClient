@@ -53,36 +53,58 @@
 						<h4 class="modal-title" id="myModalLabel" align="center"> <h2 ><strong>天能厂区车辆信息登记</strong></h2> </h4>
 					</div>
 			      <div class="modal-body">
-			       <form id="vehicleRegisterForm" class="m-t" role="form" method="post" >
-		                <div class="form-group">
-		                    <input type="text" id="inputcarLicence" name="carlicence" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入车牌号 ( 必填项 )" required="required">
-		                </div>
-		                <div class="form-group">
-		                    <input type="text" id="inputcarType" name="cartype" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入车辆类型" >
-		                </div>
-		                <div class="form-group">
-		                    <input type="text" id="inputcarColor" name="carcolor" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入车辆颜色" >
-		                </div>
-		                <div class="form-group">
-		                    <input type="text" id="inputdriverName" name="drivername" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入驾驶人姓名( 必填项 )" required="required">
-		                </div>
-		                <div class="form-group">
-		                    <input type="text" id="inputdriverPhone" name="driverphone" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入驾驶人电话( 必填项 )" required="required">
-		                </div>
-		                <div class="form-group">
-		                    <input type="text" id="inputemergencyContact" name="emergencycontact" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入紧急联系人姓名( 必填项 )" required="required">
-		                </div>
-		                <div class="form-group">
-		                    <input type="text" id="inputemergencyPhone" name="emergencyphone" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入紧急联系人电话( 必填项 )" required="required">
-		                </div>
-		                <div class="form-group">
-		                    <input type="text" class="form-control" placeholder="请选择注册日期" id="inputregistrationtime" name="registrationtime" required="required">
-		                </div>
-		                <div class="form-group">
-		                    <input type="text" id="inputstatus" name="status" class="form-control" style="display: none;" placeholder="" >
-		                </div>
-		                <button type="button" class="btn btn-primary block full-width m-b" id='sendBT' onclick="isrequired('add')">登&nbsp;&nbsp;记</button>
-		            </form>
+			       <form id="vehicleRegisterForm" action="" method="post" class="form-horizontal">
+							<input type="hidden" id="inputid" name="inputid"  class="form-control">
+							<div class="form-group">
+								<label for="inputAccount" class="col-sm-3 control-label">车牌号</label>
+								<div class="col-sm-7">
+									<input type="text" id="inputcarLicence" name="carlicence" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入车牌号 ( 必填项 )" required="required">
+								</div>
+							</div>
+							<div class="form-group" >
+								<label for="inputPassword" class="col-sm-3 control-label">车辆类型</label>
+								<div class="col-sm-7">
+									<input type="text" id="inputcarType" name="cartype" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入车辆类型" >
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputName" class="col-sm-3 control-label">车辆颜色</label>
+								<div class="col-sm-7">
+									<input type="text" id="inputcarColor" name="carcolor" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入车辆颜色" >
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputDutyid" class="col-sm-3 control-label">驾驶人姓名</label>
+								<div class="col-sm-7">
+									<input type="text" id="inputdriverName" name="drivername" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入驾驶人姓名( 必填项 )" required="required">
+								</div>
+							</div>
+							<div class="form-group">
+							    <label for="email" class="col-sm-3 control-label">驾驶人电话</label>	
+							    <div class="col-sm-7">	
+							    	<input type="text" id="inputdriverPhone" name="driverphone" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入驾驶人电话( 必填项 )" required="required">
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label for="email" class="col-sm-3 control-label">紧急联系人电话</label>	
+							    <div class="col-sm-7">	
+							    	<input type="text" id="inputemergencyPhone" name="emergencyphone" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入紧急联系人电话( 必填项 )" required="required">
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label for="email" class="col-sm-3 control-label">注册日期</label>	
+							    <div class="col-sm-7">	
+							    	<input type="text" class="form-control" placeholder="请选择注册日期" id="inputregistrationtime" name="registrationtime" required="required">
+							    </div>
+							</div>
+							<div class="form-group">
+								<label for="inputWorkplace" class="col-sm-3 control-label">状态</label>
+								<div class="col-sm-7">
+									<input type="text" id="inputstatus" name="status" class="form-control" style="display: none;" placeholder="" >
+								</div>
+							</div>
+							<button type="button" class="btn btn-primary block full-width m-b" id='sendBT' onclick="isrequired('add')">登&nbsp;&nbsp;记</button>
+						</form>
 			      </div>
 			    </div>
 			  </div>
