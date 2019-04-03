@@ -1,132 +1,163 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+	<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="renderer" content="webkit">
-  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  	<meta name="apple-mobile-web-app-status-bar-style" content="black"> 
- 	<meta name="apple-mobile-web-app-capable" content="yes">
-  	<meta name="format-detection" content="telephone=no">
-    <title>车辆信息登记</title>
-    <link rel="shortcut icon" href="favicon.ico"> <link href="../vendor/hplus/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="../vendor/hplus/css/font-awesome.css?v=4.4.0" rel="stylesheet">
-    <link href="../vendor/hplus/css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="../vendor/hplus/css/animate.css" rel="stylesheet">
-    <link href="../vendor/hplus/css/style.css?v=4.1.0" rel="stylesheet">
-    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
-</head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<title>车辆信息登记</title>
+		<link rel="shortcut icon" href="favicon.ico">
+		<link href="../vendor/hplus/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+		<link href="../vendor/hplus/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+		<link href="../vendor/hplus/css/plugins/iCheck/custom.css" rel="stylesheet">
+		<link href="../vendor/hplus/css/animate.css" rel="stylesheet">
+		<link href="../vendor/hplus/css/style.css?v=4.1.0" rel="stylesheet">
+		<script>
+			if(window.top !== window.self) {
+				window.top.location = window.location;
+			}
+		</script>
+	</head>
 
-<body class="gray-bg">
-    <div class="middle-box text-center loginscreen   animated fadeInDown">
-        <div>
-            <h2 ><strong>天能厂区车辆信息登记</strong></h2>
-            <br />
-            <form id="vehicleRegisterForm" class="m-t" role="form" method="post" >
-                <div class="form-group">
-                    <input type="text" id="inputcarLicence" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" name="carlicence" class="form-control" placeholder="请输入车牌号 ( 必填项 )" required="required">
-                </div>
-                <div class="form-group">
-                    <input type="text" id="inputcarType" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" name="cartype" class="form-control" placeholder="请输入车辆类型" >
-                </div>
-                <div class="form-group">
-                    <input type="text" id="inputcarColor" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" name="carcolor" class="form-control" placeholder="请输入车辆颜色" >
-                </div>
-                <div class="form-group">
-                    <input type="text" id="inputdriverName" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" name="drivername" class="form-control" placeholder="请输入驾驶人姓名( 必填项 )" required="required">
-                </div>
-                <div class="form-group">
-                    <input type="text" id="inputdriverPhone" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" name="driverphone" class="form-control" placeholder="请输入驾驶人电话( 必填项 )" required="required">
-                </div>
-                <div class="form-group">
-                    <input type="text" id="inputemergencyContact" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" name="emergencycontact" class="form-control" placeholder="请输入紧急联系人姓名( 必填项 )" required="required">
-                </div>
-                <div class="form-group">
-                    <input type="text" id="inputemergencyPhone" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" name="emergencyphone" class="form-control" placeholder="请输入紧急联系人电话( 必填项 )" required="required">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" placeholder="请选择注册日期" id="inputregistrationtime" name="registrationtime" required="required">
-                </div>
-                <div class="form-group">
-                    <input type="text" id="inputstatus" name="status" class="form-control" style="display: none;" placeholder="" >
-                </div>
-                <button type="button" class="btn btn-primary block full-width m-b" onclick="isrequired()">登&nbsp;&nbsp;记</button>
-            </form>
-        </div>
-    </div>
-    
-<script src="../vendor/laydate/laydate.js"></script> <!-- 改成你的路径 -->
-    <!-- 全局js -->
-    <script src="../vendor/hplus/js/jquery.min.js?v=2.1.4"></script>
-    <script src="../vendor/hplus/js/bootstrap.min.js?v=3.3.6"></script>
-    <script src="../js/common.js"></script>
-    <!-- iCheck -->
-    <script src="../vendor/hplus/js/plugins/iCheck/icheck.min.js"></script>
-    <script>
-   	//lay('#version').html('-v'+ laydate.v);
-	//执行一个laydate实例
-	laydate.render({
-	  	elem: '#inputregistrationtime', //需显示日期的元素选择器
-	  	value: new Date()
-	//	event: 'click', //触发事件
-	//	format: 'YYYY-MM-DD hh:mm:ss', //日期格式
-	//	istime: false, //是否开启时间选择
-	//	isclear: false //是否显示清空
-	//	istoday: true, //是否显示今天
-	//	issure: true, //是否显示确认
-	//	festival: true, //是否显示节日
-	//	min: '1900-01-01 00:00:00', //最小日期
-	//	max: '2099-12-31 23:59:59', //最大日期
-	//	start: '2014-6-15 23:00:00',    //开始日期
-	//	fixed: false, //是否固定在可视区域
-	//	zIndex: 99999999, //css z-index
-	//	choose: function(dates){} //选择好日期的回调
-	});
-function isrequired(){
-	if ( $("#inputcarLicence").val() == '' )
-		{alert($("#inputcarLicence").attr('placeholder'));$("#inputcarLicence").focus();return false;}
-	if ( $("#inputdriverName").val() == '' )
-	    {alert($("#inputdriverName").attr('placeholder'));$("#inputdriverName").focus();return false;}
-	if ( $("#inputdriverPhone").val() == '' )
-		{alert($("#inputdriverPhone").attr('placeholder'));$("#inputdriverPhone").focus();return false;}
-	if ( $("#inputemergencyContact").val() == '' )
-		{alert($("#inputemergencyContact").attr('placeholder'));$("#inputemergencyContact").focus();return false;}
-	if ( $("#inputemergencyPhone").val() == '' )
-		{alert($("#inputemergencyPhone").attr('placeholder'));$("#inputemergencyPhone").focus();return false;}
-	if ( $("#inputregistrationtime").val() == '' )
-		{alert($("#inputregistrationtime").attr('placeholder'));$("#inputregistrationtime").focus();return false;}
-	vehicleRegister();
-}
-		//用户登记
-	function vehicleRegister(){
-		
-			var param = $("#vehicleRegisterForm").serializeArray();
-		//		alert($("#industrialplant_id").find("option:selected").text());
-			console.log(param)
-			debugger;
-			$.ajax({
-				url: window.serviceIP + "/register/vehicleRegister",
-				method:"post",
-				data:param,
-				dataType:"json",
-				success:function(data){
-					// alert("新增成功");
-					if(data.status=="1"){
-						alert(data.message);
-		//					document.getElementById("vehicleRegisterForm").reset();
-					document.getElementById("vehicleRegisterForm").disabled;
-					}
-					else{
-						alert(data.message);
-					}
-				},
-				error:function(){
-				}
+	<body class="gray-bg">
+		<div class="middle-box text-center loginscreen   animated fadeInDown">
+			<div>
+				<h2><strong>天能厂区车辆信息登记</strong></h2>
+				<br />
+				<form id="vehicleRegisterForm" class="m-t" role="form" method="post">
+					<div class="form-group">
+						<input type="text" id="inputcarLicence" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" name="carlicence" class="form-control" placeholder="请输入车牌号 ( 必填项 )" required="required">
+					</div>
+					<div class="form-group">
+						<input type="text" id="inputcarType" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" name="cartype" class="form-control" placeholder="请输入车辆类型">
+					</div>
+					<div class="form-group">
+						<input type="text" id="inputcarColor" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" name="carcolor" class="form-control" placeholder="请输入车辆颜色">
+					</div>
+					<div class="form-group">
+						<input type="text" id="inputdriverName" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" name="drivername" class="form-control" placeholder="请输入驾驶人姓名( 必填项 )" required="required">
+					</div>
+					<div class="form-group">
+						<input type="text" id="inputdriverPhone" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" name="driverphone" class="form-control" placeholder="请输入驾驶人电话( 必填项 )" required="required">
+					</div>
+					<div class="form-group">
+						<input type="text" id="inputemergencyContact" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" name="emergencycontact" class="form-control" placeholder="请输入紧急联系人姓名( 必填项 )" required="required">
+					</div>
+					<div class="form-group">
+						<input type="text" id="inputemergencyPhone" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" name="emergencyphone" class="form-control" placeholder="请输入紧急联系人电话( 必填项 )" required="required">
+					</div>
+					<div class="form-group" style="display: none;">
+						<input type="text" class="form-control" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" placeholder="请选择注册日期" id="inputregistrationtime" name="registrationtime" required="required">
+					</div>
+					<div class="form-group">
+						<input type="text" id="inputstatus" name="status" class="form-control" style="display: none;" placeholder="">
+					</div>
+					<button type="button" class="btn btn-primary block full-width m-b" onclick="isrequired()">登&nbsp;&nbsp;记</button>
+				</form>
+			</div>
+		</div>
+
+		<script src="../vendor/laydate/laydate.js"></script>
+		<!-- 改成你的路径 -->
+		<!-- 全局js -->
+		<script src="../vendor/hplus/js/jquery.min.js?v=2.1.4"></script>
+		<script src="../vendor/hplus/js/bootstrap.min.js?v=3.3.6"></script>
+		<script src="../js/common.js"></script>
+		<!-- iCheck -->
+		<script src="../vendor/hplus/js/plugins/iCheck/icheck.min.js"></script>
+		<script>
+			//lay('#version').html('-v'+ laydate.v);
+			//执行一个laydate实例
+			laydate.render({
+				elem: '#inputregistrationtime', //需显示日期的元素选择器
+				value: new Date()
+				//	event: 'click', //触发事件
+				//	format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+				//	istime: false, //是否开启时间选择
+				//	isclear: false //是否显示清空
+				//	istoday: true, //是否显示今天
+				//	issure: true, //是否显示确认
+				//	festival: true, //是否显示节日
+				//	min: '1900-01-01 00:00:00', //最小日期
+				//	max: '2099-12-31 23:59:59', //最大日期
+				//	start: '2014-6-15 23:00:00',    //开始日期
+				//	fixed: false, //是否固定在可视区域
+				//	zIndex: 99999999, //css z-index
+				//	choose: function(dates){} //选择好日期的回调
 			});
-	}
-    </script>
-</body>
+
+			function isrequired() {
+				if($("#inputcarLicence").val() == '') {
+					alert($("#inputcarLicence").attr('placeholder'));
+					$("#inputcarLicence").focus();
+					return false;
+				}
+				if($("#inputcarLicence").val().length != 7) {
+					alert("车牌号：" + $("#inputcarLicence").val() + "，不符合规则！正确如：豫J88888!");
+					$("#inputcarLicence").focus();
+					return false;
+				}
+				if($("#inputdriverName").val() == '') {
+					alert($("#inputdriverName").attr('placeholder'));
+					$("#inputdriverName").focus();
+					return false;
+				}
+				if($("#inputdriverPhone").val() == '') {
+					alert($("#inputdriverPhone").attr('placeholder'));
+					$("#inputdriverPhone").focus();
+					return false;
+				}
+				if($("#inputemergencyContact").val() == '') {
+					alert($("#inputemergencyContact").attr('placeholder'));
+					$("#inputemergencyContact").focus();
+					return false;
+				}
+				if($("#inputemergencyPhone").val() == '') {
+					alert($("#inputemergencyPhone").attr('placeholder'));
+					$("#inputemergencyPhone").focus();
+					return false;
+				}
+				//				if($("#inputregistrationtime").val() == '') {
+				//					alert($("#inputregistrationtime").attr('placeholder'));
+				//					$("#inputregistrationtime").focus();
+				//					return false;
+				//				}
+				vehicleRegister();
+			}
+			//用户登记
+			function vehicleRegister() {
+				var today = new Date();
+				document.getElementById("inputregistrationtime").value = today.format("yyyy-MM-dd hh:mm:ss");
+				document.getElementById("inputstatus").value = "1";
+				var param = $("#vehicleRegisterForm").serializeArray();
+				//		alert($("#industrialplant_id").find("option:selected").text());
+				//console.log(param)
+
+				$.ajax({
+					url: window.serviceIP + "/register/vehicleRegister",
+					method: "post",
+					data: param,
+					dataType: "json",
+					success: function(data) {
+						// alert("新增成功");
+						if(data.status == "1") {
+							alert(data.message);
+							//					document.getElementById("vehicleRegisterForm").reset();
+							document.getElementById("vehicleRegisterForm").disabled;
+						} else {
+							alert(data.message);
+						}
+					},
+					error: function() {}
+				});
+			}
+		</script>
+	</body>
+
 </html>
