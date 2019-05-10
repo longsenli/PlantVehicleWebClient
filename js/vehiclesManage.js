@@ -33,6 +33,10 @@ function initDataGrid(selectType) {
 		"field": "emergencyphone"
 	});
 	columnsArray.push({
+		"title": "备注",
+		"field": "remark"
+	});
+	columnsArray.push({
 		"title": "注册时间",
 		"field": "registrationtime"
 	});
