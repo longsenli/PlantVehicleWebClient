@@ -36,6 +36,7 @@ function initDataGrid(selectType) {
 		"title": "注册时间",
 		"field": "registrationtime"
 	});
+	
 	columnsArray.push({
 		"title": "状态",
 		"field": "status",
