@@ -65,13 +65,14 @@
 		<br />
 		<form class="form-inline">
 			<select class="selectpicker" id="selectColumnType">
-				<option value="carLicence">车牌号</option>
+				<option value="carLicence">车辆编号</option>
 				<option value="driverName">驾驶人</option>
-				<option value="driverPhone">联系方式</option>
+				<option value="carType">车辆类型</option>
 			</select>
 			<input type="text" id="scanContext" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入查找内容">
 			<button type="button" class="btn btn-success" onclick="initDataGrid('selectByParam')">
-		              <i  aria-hidden="true">车辆查询</i>
+		            <!--  <i  aria-hidden="true">车辆查询</i>-->
+		            按条件查询
 		        </button>
 		</form>
 		<section class="content table-content">
@@ -80,18 +81,19 @@
 				<!-- 工具栏 -->
 
 				<div id="toolbar">
-					<button type="button" class="btn btn-success" onclick="showAddModal()">
-		              <i class="glyphicon glyphicon-plus" aria-hidden="true">新增注册车辆</i>
+					<button type="button" class="btn btn-success" onclick="showAddModal()">新增注册车辆
+		              <!--<i class="glyphicon glyphicon-plus" aria-hidden="true">新增注册车辆</i>-->
 		            </button>
-					<button type="button" class="btn btn-warning" onclick="showEditModal()">
+					<!--<button type="button" class="btn btn-warning" onclick="showEditModal()">
 		              <i class="glyphicon glyphicon-edit" aria-hidden="true">修改车辆信息</i>
-		            </button>
+		            </button>-->
 					<button type="button" class="btn btn-danger" onclick="confirmDel()">
-		              <i class="glyphicon glyphicon-remove" aria-hidden="true">删除车辆信息</i>
+						删除车辆信息
+		             <!-- <i class="glyphicon glyphicon-remove" aria-hidden="true">删除车辆信息</i>-->
 		            </button>
-					<button type="button" class="btn btn-info" onclick="relLaissezpasser()">
+					<!--<button type="button" class="btn btn-info" onclick="relLaissezpasser()">
 		              <i class="glyphicon glyphicon-align-center" aria-hidden="true">关联通行证</i>
-		            </button>
+		            </button>-->
 				</div>
 				<!-- bootstrapTable -->
 			</form>
@@ -112,21 +114,38 @@
 						<form id="vehicleRegisterForm" action="" method="post" class="form-horizontal">
 							<input type="hidden" id="inputid" name="inputid" class="form-control">
 							<div class="form-group">
-								<label for="inputAccount" class="col-sm-3 control-label">车牌号</label>
+								<label for="inputAccount" class="col-sm-3 control-label">车辆编号</label>
 								<div class="col-sm-7">
-									<input type="text" id="inputcarLicence" name="carlicence" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入车牌号 ( 必填项 )" required="required">
+									<input type="text" id="inputcarLicence" name="carlicence" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入车辆编号 ( 必填项 )" required="required">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="inputPassword" class="col-sm-3 control-label">车辆类型</label>
-								<div class="col-sm-7">
-									<input type="text" id="inputcarType" name="cartype" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入车辆类型">
-								</div>
+
+								<label class="col-sm-6 control-label" style='font-size: 25px;'><input type="radio" value = '电动三轮车' checked="checked"  id='extd2_4' name="cartype" >电动三轮车</label><br />
+							</div>
+							<div class="form-group">
+								<label class="col-sm-6 control-label" style='font-size: 25px;'><input type="radio" value = '电动两轮车 ' id='extd2_1'  name="cartype"  >电动两轮车</label> <br />
+							</div>
+							<div class="form-group">
+								<label class="col-sm-6 control-label" style='font-size: 25px;'><input type="radio" value = '其他电动车' id='extd2_2' name="cartype" >其他电动车</label><br />
+
 							</div>
 							<div class="form-group">
 								<label for="inputName" class="col-sm-3 control-label">车辆颜色</label>
 								<div class="col-sm-7">
 									<input type="text" id="inputcarColor" name="carcolor" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入车辆颜色">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputDutyid" class="col-sm-3 control-label">驾驶人部门</label>
+								<div class="col-sm-7">
+									<input type="text" id="department" name="department" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入驾驶人部门( 必填项 )" required="required">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputDutyid" class="col-sm-3 control-label">驾驶人岗位</label>
+								<div class="col-sm-7">
+									<input type="text" id="job" name="job" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" class="form-control" placeholder="请输入驾驶人岗位( 必填项 )" required="required">
 								</div>
 							</div>
 							<div class="form-group">
@@ -159,10 +178,10 @@
 									<input type="text" class="form-control" placeholder="请选择注册日期" id="inputregistrationtime" name="registrationtime" required="required">
 								</div>
 							</div>
-							<div class="form-group" >
+							<div class="form-group">
 								<label for="email" class="col-sm-3 control-label">备注</label>
 								<div class="col-sm-7">
-									<input type="text" class="form-control" placeholder="备注信息" id="remark" name="remark" >
+									<input type="text" class="form-control" placeholder="备注信息" id="remark" name="remark">
 								</div>
 							</div>
 							<div class="form-group" style="display: none;">

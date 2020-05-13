@@ -109,8 +109,9 @@
 
 						if(result.status == "1") {
 							window.location.href = "main.html";
-							$.cookie('userID', result.message.split("###")[0].trim());
-							$.cookie('userName', result.message.split("###")[1].trim());
+							localStorage.clear();
+							localStorage.setItem('userID', result.message.split("###")[0].trim());
+							localStorage.setItem('userName', result.message.split("###")[1].trim());
 						} else {
 							var hintinfo = document.getElementById("hintinfo");
 							hintinfo.innerText = "用户名或密码错误，请重新填写。";

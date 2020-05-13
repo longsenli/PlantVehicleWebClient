@@ -1,0 +1,16 @@
+{
+	"pages/app_login.html": {
+		"refer": [
+			"pages/app_webview_main.html"
+		]
+	},
+	"pages/app_webview_main.html": {
+		"refer": [
+			"pages/app_login.html",
+			"pages/electromobileManage/app_carComeDriveRecord.html",
+			"pages/electromobileManage/app_carDriveRecord.html",
+			"pages/electromobileManage/app_carGoDriveRecord.html",
+			"pages/system/app_changepassword.html"
+		]
+	}
+}

@@ -1,15 +1,12 @@
 var RemoteServiceIP = localStorage.getItem('RemoteServiceIP');
-//alert(RemoteServiceIP)
-//alert(RemoteServiceIP!=null)
-window.serviceIP = "http://192.168.80.228:19001/ilpsService";
-window.netServiceIP = "http://192.168.80.228:8088/";
-window.webUiService = "http://192.168.80.228:19001";
-//window.serviceIP = "http://192.168.1.106:8080";
+
+window.serviceIP = "http://192.168.1.113:8080";
+//window.serviceIP = "http://117.158.49.108:19001/PlantVehicleMSService";
 //window.netServiceIP = "http://192.168.1.106:8088/";
-//window.webUiService = "http://127.0.0.1:8020/TNWebUIProject";
+window.webUiService = "http://117.158.49.108:19001/clgl";
 //window.webUiService = "http://192.168.1.108:8081";
 if (RemoteServiceIP!=null && RemoteServiceIP!='undefined' && RemoteServiceIP !=""){
-	window.serviceIP = 'http://'+RemoteServiceIP+'/ilpsService';
+	window.serviceIP = 'http://'+RemoteServiceIP+'/PlantVehicleMSService';
 }
 
 
@@ -117,6 +114,24 @@ function mesgNotice(tagmsg, message, linkedURL) {
 		});
 	}
 }
+
+
+function formToObject(formOrign)
+{
+    var o = {};
+    var a = formOrign.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
 
 function changeConfirmDlg(msg) {
 

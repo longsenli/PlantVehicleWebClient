@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>首页</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="../vendor/bootstrap-datatable/bootstrap-table.css" media="screen">
+		<link rel="stylesheet" href="../vendor/mui/css/mui.min.css">
+		<script src="../vendor/iconfont/iconfont.js"></script>
+		<script src="../vendor/iconfont/iconfontrzwage.js"></script>
+		<style>
+			.icon {
+			  width: 1em;
+			  height: 1em;
+			  vertical-align: -0.15em;
+			  fill: currentColor;
+			  overflow: hidden; 
+			}
+			</style>
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+		</style>
+	</head>
+	
+	<body id="re_body">
+		<br>
+		<div class="mui-content">
+		        <ul class="mui-table-view mui-grid-view mui-grid-9" id="app_ul_list">
+
+		        	<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a id="../pages/electromobileManage/app_carComeDriveRecord.html" name="进厂扫码">
+		        		<span class="mui-icon"><svg class="icon" aria-hidden="true">
+		        		  <use xlink:href="#icon-comein"></use>
+		        		</svg></span>
+		        	</a>进厂扫码</li>	 
+		        	<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a id="../pages/electromobileManage/app_carGoDriveRecord.html" name="出厂扫码">
+		        		<span class="mui-icon"><svg class="icon" aria-hidden="true">
+		        		  <use xlink:href="#icon-goout"></use>
+		        		</svg></span>		        		 
+		        	</a>出厂扫码</li>	
+		        	<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a id="../pages/electromobileManage/app_carDriveRecord.html" name="扫码查询">
+		        		<span class="mui-icon"><svg class="icon" aria-hidden="true">
+		        		  <use xlink:href="#icon-gudingbaiye"></use>
+		        		</svg></span>		        		
+		        	</a>扫码查询</li>	
+		      
+				<!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a id="../pages/app_selectedSelfFunction.html" name="设置自选功能">
+						<span class="mui-icon">
+					         	<svg class="icon" aria-hidden="true">
+					         	  <use xlink:href="#icon-shezhi"></use>
+					         	</svg>
+					         </span>
+						
+					</a>设置自选功能</li>-->
+
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a id="../pages/system/app_changepassword.html" name="修改我的密码">
+						<span class="mui-icon">
+					         	<svg class="icon" aria-hidden="true">
+					         	  <use xlink:href="#icon-mima"></use>
+					         	</svg>
+					         </span>
+					
+					</a>修改我的密码</li>
+				
+		                    
+		        </ul> 
+		</div>
+		
+
+		</body>
+	<script src="../vendor/mui/js/mui.min.js"></script>
+	<script type="text/javascript" src="../vendor/hplus/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../vendor/bootstrap-datatable/bootstrap-table.js"></script>
+	<script type="text/javascript" src="../vendor/bootstrap-datatable/bootstrap-table-zh-CN.js"></script>
+	<!-- <script type="text/javascript" src="../js/loginJS/app_mainMenu.js"></script> -->
+	<script type="text/javascript" src="../js/common.js"></script>
+	
+	<script>
+            mui.init({
+            	swipeBack:false, //侧滑关闭 
+                pullRefresh: {  //下拉刷新
+                    container: '#re_body',  
+                    down: {  
+                        callback: pulldownRefresh  
+                    }  
+                },
+				statusBarBackground: '#f7f7f7'
+			});
+            //初始化菜单
+            mui.plusReady(function() {
+				initMenu();
+            }); 
+            /**  
+             * 下拉刷新具体业务实现  
+             */  
+            function pulldownRefresh() {  
+				setTimeout(function() {
+					initMenu();
+				}, 100);
+//          	plus.webview.currentWebview().reload();
+				mui('#re_body').pullRefresh().endPulldownToRefresh(); //refresh completed  
+
+            }  
+		//点击打开菜单窗口
+		mui('ul').on('tap', 'li', function(e) {
+				// plus.webview.open(this.getAttribute('id'),'new', {}, 'slide-in-right', 200);
+				// var aaaa = this;
+				// alert(this.childNodes[0].getAttribute("id"));
+				mui.openWindow({
+				  url: this.childNodes[0].getAttribute("id"),
+				  id: this.childNodes[0].getAttribute("id"),
+				  styles: {                             // 窗口参数 参考5+规范中的WebviewStyle,也就是说WebviewStyle下的参数都可以在此设置
+				    titleNView: {                       // 窗口的标题栏控件
+				      titleText:this.childNodes[0].getAttribute('name'),                // 标题栏文字,当不设置此属性时，默认加载当前页面的标题，并自动更新页面的标题
+				      titleColor:"#000000",             // 字体颜色,颜色值格式为"#RRGGBB",默认值为"#000000"
+				      titleSize:"17px",                 // 字体大小,默认17px
+				      backgroundColor:"#F7F7F7",        // 控件背景颜色,颜色值格式为"#RRGGBB",默认值为"#F7F7F7"
+//				      progress:{                        // 标题栏控件的进度条样式
+//				        color:"#CCCCCC",                // 进度条颜色,默认值为"#00FF00"  
+//				        height:"2px"                    // 进度条高度,默认值为"2px"         
+//				      },
+				      splitLine:{                       // 标题栏控件的底部分割线，类似borderBottom
+				        color:"#CCCCCC",                // 分割线颜色,默认值为"#CCCCCC"  
+				        height:"1px"                    // 分割线高度,默认值为"2px"
+				      }
+				    }
+				  }
+				});
+				
+		});
+		
+			//初始化菜单
+			function initMenu(){
+				if((localStorage.getItem('roleID')=='null')&&(localStorage.getItem('plantID')==null)&&(localStorage.getItem('processID')==null)){
+					var el = document.getElementById('app_ul_list');
+					var childs = el.childNodes;
+					for(var i = childs .length - 1; i >= 0; i--) {
+					  el.removeChild(childs[i]);
+					}
+					var rzdefaultaddhtml = '<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a id="../pages/wageManage/RZwagedetail.html" name="人资工资条">'+
+						'<span class="mui-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gongzihefang"></use></svg></span></a>人资薪资条</li>'+
+					'<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a id="../pages/rights/new_app_changepassword.html" name="修改我的密码">'+
+						'<span class="mui-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mima"></use></svg></span></a>修改我的密码</li>';
+					
+					
+					
+					el.innerHTML=rzdefaultaddhtml;
+					
+					
+					
+					return;
+				}
+				for(var i=0; i<document.getElementsByTagName('li').length;i++){
+					// var aid = document.getElementsByTagName('li')[i].childNodes[0].getAttribute("id");
+					var a_label = document.getElementsByTagName('li')[i].childNodes[0];
+					var a_id = a_label.getAttribute("id");
+					// alert(plus.storage.getItem(a_id))
+					// alert(document.getElementsByTagName('li')[i].childNodes[0].getAttribute("id"))
+					var flag = plus.storage.getItem(a_id);
+					// alert(flag)
+					if(flag=="true"){
+						a_label.parentNode.style.display = "";
+					}else{
+						if(flag=="null" || flag==null){
+							a_label.parentNode.style.display = "";
+						}else{
+							a_label.parentNode.style.display = "none";
+						}
+					}
+					
+					
+				}
+			}
+			
+
+		</script>
+</html>

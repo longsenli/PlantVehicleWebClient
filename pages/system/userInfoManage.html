@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=0" />
+
+		<title>濮阳循环经济产业园电动车辆管理平台</title>
+		<style>
+			.changeTableRowColor {
+				background-color: #31b0d5 !important;
+				color: black;
+			}
+		</style>
+		<script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../vendor/boostrap-select/bootstrap-select.min.js"></script>
+		<script type="text/javascript" src="../../vendor/bootstrap-datatable/bootstrap-table.js"></script>
+		<script type="text/javascript" src="../../js/common.js"></script>
+		<script type="text/javascript" src="../../js/userJS/user.js"></script>
+		<script type="text/javascript" src="../../vendor/bootstrap-datatable/bootstrap-table-zh-CN.js"></script>
+		<script type="text/javascript" src="../../vendor/boostrap-select/defaults-zh_CN.js"></script>
+		<script type="text/javascript" src="../../vendor/bootstrap-datatable/tableExport.js"></script>
+		<script type="text/javascript" src="../../vendor/bootstrap-datatable/bootstrap-table-export.js"></script>
+		<script type="text/javascript" src="../../vendor/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+		<script type="text/javascript" src="../../vendor/bootstrap3-editable/js/bootstrap-table-editable.js"></script>
+		<script type="text/javascript" src="../../vendor/lodop/LodopFuncs.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../vendor/bootstrap/css/bootstrap.min.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="../../vendor/boostrap-select/bootstrap-select.min.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="../../vendor/bootstrap-datatable/bootstrap-table.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="../../vendor/bootstrap3-editable/css/bootstrap-editable.css" media="screen">
+	</head>
+
+	<body class="gray-bg" style="padding-left:20px;padding-top:5px">
+		<script>
+$(function() {
+				$("body").delegate('#table tr', 'click', function() {
+					rowClickChangeColor(this);
+				});
+			});
+			</script>
+		<form id="staffTMPTRecordForm" name="staffTMPTRecordForm" class="m-t" role="form">
+			<div class="form-inline row">
+
+				<input type="text" id="userID" style='margin-top: 5px;font-size: 20px;' style="width:150px;" placeholder="请输入账号 ">
+				<input type="text" id="userName" style='margin-top: 5px;font-size: 20px;' style="width:150px;" placeholder="请输入姓名 ">
+				<input type="text" id="userPassword" style='margin-top: 5px;font-size: 20px;' style="width:150px;" placeholder="请输入密码 ">
+				<button type="button" class="btn btn-primary" style="margin-top: 5px;font-size: 20px;" onclick="addUserInfo()">添加用户</button>
+				<button type="button" class="btn btn-primary" style="margin-top: 5px;font-size: 20px;" onclick="getUserList('2')">按条件查询</button>
+
+				<br />
+				<button type="button" class="btn btn-primary" style="margin-top: 5px;font-size: 20px;" onclick="getUserList('-1')">查询所有用户</button>
+				<button type="button" class="btn btn-primary" style="margin-top: 5px;font-size: 20px;" onclick="deleteUserInfo()">删除用户</button>
+
+				<br />
+
+			</div>
+		</form>
+		<table id="table" class="table table-responsive table-striped    table-bordered table-hover table-condensed ">
+		</table>
+
+	</body>
+
+</html>

@@ -4,56 +4,55 @@ function initDataGrid(selectType) {
 		radio: true
 	});
 	columnsArray.push({
-		"title": "车牌号",
-		"field": "carlicence",
+		"title": "车辆编号",
+		"field": "carLicence",
 		//		 "visible":false
 	});
 	columnsArray.push({
 		"title": "车辆类型",
-		"field": "cartype"
+		"field": "carType"
 	});
 	columnsArray.push({
 		"title": "车辆颜色",
-		"field": "carcolor"
+		"field": "carColor"
 	});
 	columnsArray.push({
 		"title": "驾驶人姓名",
-		"field": "drivername"
+		"field": "driverName"
 	});
 	columnsArray.push({
 		"title": "驾驶人电话",
-		"field": "driverphone"
+		"field": "driverPhone"
+	});
+	columnsArray.push({
+		"title": "部门",
+		"field": "department"
+	});
+	columnsArray.push({
+		"title": "岗位",
+		"field": "job"
 	});
 	columnsArray.push({
 		"title": "紧急联系人",
-		"field": "emergencycontact"
+		"field": "emergencyContact"
 	});
 	columnsArray.push({
 		"title": "紧急联系人电话",
-		"field": "emergencyphone"
+		"field": "emergencyPhone"
+	});
+	columnsArray.push({
+		"title": "登记人",
+		"field": "registerName"
+	});
+	columnsArray.push({
+		"title": "登记时间",
+		"field": "registrationTime"
 	});
 	columnsArray.push({
 		"title": "备注",
 		"field": "remark"
 	});
-	columnsArray.push({
-		"title": "注册时间",
-		"field": "registrationtime"
-	});
-	
-	columnsArray.push({
-		"title": "状态",
-		"field": "status",
-//		"visible": false,
-//		align: 'center',
-//		formatter: function(value, row, index) {
-//			if(value == '1') {
-//				return '<span class="badge badge-primary">正常</span>';
-//			} else if(value == '0') {
-//				return '<span class="badge badge-danger">停用</span>';
-//			}
-//		}
-	});
+	 
 	var columnName = "-1";
 	var selectValue = "";
 	if("selectByParam" == selectType) {
@@ -189,11 +188,7 @@ function isrequired(flag) {
 		$("#inputcarLicence").focus();
 		return false;
 	}
-	if($("#inputcarLicence").val().length != 7) {
-		alert("车牌号：" + $("#inputcarLicence").val() + "，不符合规则！正确如：豫J88888!");
-		$("#inputcarLicence").focus();
-		return false;
-	}
+ 
 	if($("#inputdriverName").val() == '') {
 		alert($("#inputdriverName").attr('placeholder'));
 		$("#inputdriverName").focus();
@@ -227,17 +222,16 @@ function isrequired(flag) {
 
 //用户登记
 function vehicleRegister() {
-	var today = new Date();
-	document.getElementById("inputregistrationtime").value = today.format("yyyy-MM-dd hh:mm:ss");
-	document.getElementById("inputstatus").value = "1";
-	var param = $("#vehicleRegisterForm").serializeArray();
-	//		alert($("#industrialplant_id").find("option:selected").text());
-
+	
+	
+	var mapData = window.formToObject($("#vehicleRegisterForm"));
+mapData["registerName"] = localStorage.userName
 	$.ajax({
 		url: window.serviceIP + "/register/vehicleRegister",
-		method: "post",
-		data: param,
+		type: "POST",
+		contentType: "application/json",
 		dataType: "json",
+		data: JSON.stringify(mapData).toString(),
 		success: function(data) {
 			// alert("新增成功");
 			if(data.status == "1") {
