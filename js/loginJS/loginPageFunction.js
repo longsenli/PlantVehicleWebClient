@@ -5,6 +5,8 @@ function loginSuccess(result, realIP, username, password) {
 	localStorage.setItem('userName', result.split("###")[1].trim());
 	localStorage.setItem('password', password);
 	localStorage.setItem('RemoteServiceIP',realIP  );
+	localStorage.setItem('myDefaultIP',realIP  );
+ 
 	window.location.href = "app_webview_main.html";
 }
 
@@ -33,12 +35,11 @@ function defLogin() {
 	
 	var username = document.getElementById("form-username").value;
 	var password = document.getElementById("form-password").value;
-
 	$.ajax({
 		type: 'POST',
 		// url:'http://192.168.1.100:8080/api/login',
 		//url: 'http://10.0.0.151:19001/ilpsService/api/login',
-		url: 'http://' + defineIP.trim() + '/RemoteServiceIP/api/login',
+		url: 'http://' + defineIP.trim() + '/PlantVehicleMSService/api/login',
 		dataType: "json",
 		data: {
 			'username': username,
@@ -90,7 +91,7 @@ function appLoginPageload() {
 function versionCompare() {
 	var RemoteServiceIP1 = localStorage.getItem('RemoteServiceIP');
 	if(RemoteServiceIP1 != null && RemoteServiceIP1 != 'undefined' && RemoteServiceIP1 != "") {
-		window.webUiService = 'http://' + RemoteServiceIP1;
+		window.webUiService = 'http://' + RemoteServiceIP1+ "/clgl";
 	}
 	//alert(window.serviceIP ); 
 	var versionNow = "";
@@ -114,7 +115,7 @@ function versionCompare() {
 				plus.nativeUI.showWaiting("新版本app下载中，请稍等......");
 				//updateAppRun(window.webUiService + '/pages/H5EE481DB_0308142119.apk');
 				//									alert(window.webUiService + '/tnpyILPS_' + res.message.toString().trim() + '.apk')
-				updateAppRun(window.serviceIP + '/clgl_' + res.message.toString().trim() + '.apk');
+				updateAppRun(window.webUiService + '/clgl_' + res.message.toString().trim() + '.apk');
 
 				//							//console.log(new_version+'新版本'+version);
 				//							plus.nativeUI.confirm("应用有新版本，是否立即下载更新？", function(event) {
@@ -137,7 +138,8 @@ function versionCompare() {
 
 function downloadAPP() {
 	plus.nativeUI.showWaiting("新版本app下载中，请稍等......");
-	updateAppRun(window.webUiService + '/tnpyILPS.apk');
+	//alert(window.webUiService   +  '/clgl.apk')
+	updateAppRun(window.webUiService   +  '/clgl.apk');
 }
 //ks.update_ksd==========
 function updateAppRun(url) {
@@ -188,12 +190,12 @@ function login() {
 		return;
 	}
 
-	var defaultIP = "117.158.49.108:19001";
+	var defaultIP = "tnjtpyjd.com:19001:19001";
 	if(localStorage.getItem('myDefaultIP')) {
+ 
 		defaultIP = localStorage.getItem('myDefaultIP');
 	}
-
-	
+ 
 	var username = document.getElementById("form-username").value;
 	var password = document.getElementById("form-password").value;
 	// var RemoteServiceIP1 = localStorage.getItem('RemoteServiceIP');
@@ -240,13 +242,64 @@ function login() {
 				//alert(status + "，连接服务器失败，请检查配置信息及网络连接！")
 				//	alert(status + "，连接MES网络服务器失败，正在尝试登录mes网服务器！")
 				//mes_login();
-				ww1_login();
+				nw1_login();
 			}
 			
 		}
 	});
 	return false;
 }
+
+//mes段网络登录调用方法
+function nw1_login() {
+
+	//				alert('second_login被调用了')
+
+	var username = document.getElementById("form-username").value;
+	var password = document.getElementById("form-password").value;
+	// var RemoteServiceIP1 = localStorage.getItem('RemoteServiceIP');
+	// 				if(RemoteServiceIP1 != null && RemoteServiceIP1 != 'undefined' && RemoteServiceIP1 != "") {
+	// 					window.serviceIP = 'http://' + RemoteServiceIP1 + '/ilpsService';
+	// 				}
+	// 					alert('RemoteServiceIP1' + RemoteServiceIP1)
+	// 				alert('window.serviceIP' + window.serviceIP)
+	$.ajax({
+		type: 'POST',
+		url: 'http://192.168.80.228:19001/PlantVehicleMSService/api/appLogin',
+		dataType: "json",
+		data: {
+			'username': username,
+			"password": password,
+			"appVersion": localStorage.getItem("versionNow")
+		},
+		async: true, //设置为false时,timeout不生效
+		timeout: 3000,
+		success: function(result) {
+			if(result.status == "1") {
+				$("#loginButton").attr("disabled", false);
+				loginSuccess(result.message, '192.168.80.228:19001',  username, password);
+			} else {
+				var hintinfo = document.getElementById("hintinfo");
+				hintinfo.innerHTML = '<font color="red">' + result.message + '</font>';
+				//							hintinfo.innerText = "用户名或密码错误，请重新填写。";
+			}
+		},
+
+		error: function(xhr, status, err) {
+			//					 	alert('出现错误,请联系管理员!')
+		},
+		complete: function(XMLHttpRequest, status) { //当请求完成时调用函数
+			$("#loginButton").attr("disabled", false);
+			if(status == 'timeout' || status == 'error') { //status == 'timeout'意为超时,status的可能取值：success,notmodified,nocontent,error,timeout,abort,parsererror 
+				ww1_login();
+				//alert(status + "，连接服务器失败，请检查配置信息及网络连接！")
+			}
+		}
+
+	});
+	return false;
+}
+
 
 //mes段网络登录调用方法
 function ww1_login() {
@@ -263,7 +316,7 @@ function ww1_login() {
 	// 				alert('window.serviceIP' + window.serviceIP)
 	$.ajax({
 		type: 'POST',
-		url: 'http://117.158.49.108:19001/PlantVehicleMSService/api/appLogin',
+		url: 'http://tnjtpyjd.com:19001/PlantVehicleMSService/api/appLogin',
 		dataType: "json",
 		data: {
 			'username': username,
@@ -275,7 +328,7 @@ function ww1_login() {
 		success: function(result) {
 			if(result.status == "1") {
 				$("#loginButton").attr("disabled", false);
-				loginSuccess(result.message, '117.158.49.108:19001',  username, password);
+				loginSuccess(result.message, 'tnjtpyjd.com:19001',  username, password);
 			} else {
 				var hintinfo = document.getElementById("hintinfo");
 				hintinfo.innerHTML = '<font color="red">' + result.message + '</font>';
@@ -312,7 +365,7 @@ function ww2_login() {
 	// 				alert('window.serviceIP' + window.serviceIP)
 	$.ajax({
 		type: 'POST',
-		url: 'http://120.194.241.54:19001/PlantVehicleMSService/api/appLogin',
+		url: 'http://222.136.105.178:19001/PlantVehicleMSService/api/appLogin',
 		dataType: "json",
 		data: {
 			'username': username,
@@ -324,7 +377,7 @@ function ww2_login() {
 		success: function(result) {
 			if(result.status == "1") {
 				$("#loginButton").attr("disabled", false);
-				loginSuccess(result.message, '120.194.241.54:19001', unselectedMenu, username, password);
+				loginSuccess(result.message, '222.136.105.178:19001', unselectedMenu, username, password);
 			} else {
 				var hintinfo = document.getElementById("hintinfo");
 				hintinfo.innerHTML = '<font color="red">' + result.message + '</font>';

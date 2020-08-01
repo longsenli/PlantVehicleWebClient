@@ -7,6 +7,7 @@ window.webUiService = "http://117.158.49.108:19001/clgl";
 //window.webUiService = "http://192.168.1.108:8081";
 if (RemoteServiceIP!=null && RemoteServiceIP!='undefined' && RemoteServiceIP !=""){
 	window.serviceIP = 'http://'+RemoteServiceIP+'/PlantVehicleMSService';
+	
 }
 
 

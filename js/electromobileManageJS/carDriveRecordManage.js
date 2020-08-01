@@ -52,9 +52,9 @@ function getCarDriveRecord(carID) {
 
 	} else {
 		formData.append("id", $("#carID").val());
-		if($("#carID").val() == '')
-		{
-			alert("请输入编码");return;
+		if($("#carID").val() == '') {
+			alert("请输入编码");
+			return;
 		}
 		formData.append("startTime", $("#startTime").val());
 		formData.append("endTime", $("#endTime").val() + " 23:59");
@@ -103,18 +103,142 @@ function getCarDriveRecord(carID) {
 					searchAlign: 'right',
 					pagination: true,
 					//>>>>>>>>>>>>>>导出excel表格设置
-//					showExport: true, //是否显示导出按钮(此方法是自己写的目的是判断终端是电脑还是手机,电脑则返回true,手机返回falsee,手机不显示按钮)
-//					exportDataType: "all", //basic', 'all', 'selected'.
-//					exportTypes: ['doc', 'excel'], //导出类型'json','xml','png','csv','txt','sql','doc','excel','xlsx','pdf'
-//					//exportButton: $('#btn_export'),     //为按钮btn_export  绑定导出事件  自定义导出按钮(可以不用)
-//					exportOptions: { //导出参数
-//						//ignoreColumn: [0, 0], //忽略某一列的索引  
-//						fileName: '数据导出', //文件名称设置  
-//						worksheetName: 'Sheet1', //表格工作区名称  
-//						tableName: '数据导出表',
-//						excelstyles: ['background-color', 'color', 'font-size', 'font-weight'],
-//						//onMsoNumberFormat: DoOnMsoNumberFormat  
-//					},
+					//					showExport: true, //是否显示导出按钮(此方法是自己写的目的是判断终端是电脑还是手机,电脑则返回true,手机返回falsee,手机不显示按钮)
+					//					exportDataType: "all", //basic', 'all', 'selected'.
+					//					exportTypes: ['doc', 'excel'], //导出类型'json','xml','png','csv','txt','sql','doc','excel','xlsx','pdf'
+					//					//exportButton: $('#btn_export'),     //为按钮btn_export  绑定导出事件  自定义导出按钮(可以不用)
+					//					exportOptions: { //导出参数
+					//						//ignoreColumn: [0, 0], //忽略某一列的索引  
+					//						fileName: '数据导出', //文件名称设置  
+					//						worksheetName: 'Sheet1', //表格工作区名称  
+					//						tableName: '数据导出表',
+					//						excelstyles: ['background-color', 'color', 'font-size', 'font-weight'],
+					//						//onMsoNumberFormat: DoOnMsoNumberFormat  
+					//					},
+					//导出excel表格设置<<<<<<<<<<<<<<<<
+					columns: columnsArray
+				});
+			} else {
+				alert("初始化数据失败！" + dataRes.message);
+			}
+		},
+		error: function(jqXHR, exception) {
+			var msg = '';
+			if(jqXHR.status === 0) {
+				msg = 'Not connect.\n Verify Network.';
+			} else if(jqXHR.status == 404) {
+				msg = 'Requested page not found. [404]';
+			} else if(jqXHR.status == 500) {
+				msg = 'Internal Server Error [500].';
+			} else if(exception === 'parsererror') {
+				msg = 'Requested JSON parse failed.';
+			} else if(exception === 'timeout') {
+				msg = 'Time out error.';
+			} else if(exception === 'abort') {
+				msg = 'Ajax request aborted.';
+			} else {
+				msg = 'Uncaught Error.\n' + jqXHR.responseText;
+			}
+			alert("请求出错," + msg);
+		}
+	});
+}
+
+function getCarStayInPlant() {
+	var columnsArray = [];
+	columnsArray.push({
+		"title": "编号",
+		"field": "carID"
+	});
+	columnsArray.push({
+		"title": "电    动   车   车   型",
+		"field": "carType"
+	});
+	columnsArray.push({
+		"title": "员工姓名",
+		"field": "driverName"
+	});
+	columnsArray.push({
+		"title": "  所   属    部   门",
+		"field": "department"
+	});
+	columnsArray.push({
+		"title": "车  主  联  系  电  话",
+		"field": "driverPhone"
+	});
+	columnsArray.push({
+		"title": "车   辆   入   厂  扫  码   时  间",
+		"field": "comeTime"
+	});
+	columnsArray.push({
+		"title": "入厂登记人 ",
+		"field": "comeRecorder"
+	});
+
+	columnsArray.push({
+		"title": "车   辆   出   厂  扫  码   时  间",
+		"field": "goTime"
+	});
+
+	columnsArray.push({
+		"title": "出厂登记人",
+		"field": "goRecorder"
+	});
+
+	$.ajax({
+		url: window.serviceIP + "/api/carDriveRecord/getCarStayInPlant",
+		type: "GET",
+		//data: formData,
+		processData: false,
+		contentType: false,
+		//contentType: "application/json",
+		//dataType: "json",
+		//		headers: {
+		//			Token: localStorage.getItem('token')
+		//		},
+
+		success: function(dataRes) {
+			if(dataRes.status == 1) { 
+
+				var models = eval("(" + dataRes.data + ")");
+				//				var resText = "";
+				//				for(var i in models) {
+				//					resText += "体温:" + models[i].temperature + "时间 :" + models[i].updateTime + "</br>"
+				//				}
+				//
+				//				$('#latestTMPTText').html(resText);
+
+				$('#table').bootstrapTable('destroy').bootstrapTable({
+					data: models,
+					toolbar: '#materialidToolbar',
+					toolbarAlign: 'left',
+					singleSelect: true,
+					clickToSelect: true,
+					sortName: "orderSplitid",
+					sortOrder: "asc",
+					pageSize: 40,
+					pageNumber: 1,
+					uniqueId: "id",
+					pageList: "[10, 25, 50, 100, All]",
+					//showToggle: true,
+					//showRefresh: true,
+					//showColumns: true,
+					search: false,
+					searchAlign: 'right',
+					pagination: true,
+					//>>>>>>>>>>>>>>导出excel表格设置
+					//					showExport: true, //是否显示导出按钮(此方法是自己写的目的是判断终端是电脑还是手机,电脑则返回true,手机返回falsee,手机不显示按钮)
+					//					exportDataType: "all", //basic', 'all', 'selected'.
+					//					exportTypes: ['doc', 'excel'], //导出类型'json','xml','png','csv','txt','sql','doc','excel','xlsx','pdf'
+					//					//exportButton: $('#btn_export'),     //为按钮btn_export  绑定导出事件  自定义导出按钮(可以不用)
+					//					exportOptions: { //导出参数
+					//						//ignoreColumn: [0, 0], //忽略某一列的索引  
+					//						fileName: '数据导出', //文件名称设置  
+					//						worksheetName: 'Sheet1', //表格工作区名称  
+					//						tableName: '数据导出表',
+					//						excelstyles: ['background-color', 'color', 'font-size', 'font-weight'],
+					//						//onMsoNumberFormat: DoOnMsoNumberFormat  
+					//					},
 					//导出excel表格设置<<<<<<<<<<<<<<<<
 					columns: columnsArray
 				});

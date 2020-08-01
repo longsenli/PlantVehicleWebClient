@@ -1,7 +1,7 @@
 function initDataGrid(selectType) {
 	var columnsArray = [];
 	columnsArray.push({
-		radio: true
+		checkbox: true
 	});
 	columnsArray.push({
 		"title": "车辆编号",
@@ -76,7 +76,7 @@ function initDataGrid(selectType) {
 				$('#dataGrid').bootstrapTable('destroy').bootstrapTable({
 					data: models,
 					toolbar: '#toolbar',
-					singleSelect: true,
+					singleSelect: false,
 					clickToSelect: true,
 					sortName: "recordTime",
 					sortOrder: "desc",
@@ -371,4 +371,27 @@ function laissezpasserRegister() {
 		},
 		error: function() {}
 	});
+}
+
+
+function printCarQRCode() {
+	var selectRow = $("#dataGrid").bootstrapTable('getSelections');
+	for(var i = 0; i < selectRow.length; i++) {
+		
+		var LODOP = getLodop(document.getElementById('LODOP_OB'), document.getElementById('LODOP_EM'));
+		LODOP.PRINT_INIT("打印任务名"); //首先一个初始化语句
+		LODOP.ADD_PRINT_BARCODE(15, 70, 120, 120, "QRCode", selectRow[i].carLicence);
+
+		LODOP.ADD_PRINT_TEXT(133, 60, 200, 250,selectRow[i].carLicence + "   "+ selectRow[i].driverName); //增加纯文本项
+		LODOP.SET_PRINT_STYLEA(0, "ItemType", 1);
+		LODOP.SET_PRINT_STYLEA(0, "FontSize", 12);
+		LODOP.SET_PRINT_STYLEA(0, "Bold", 2);
+
+		LODOP.ADD_PRINT_TEXT(152, 60, 200, 250, selectRow[i].driverPhone); //增加纯文本项
+		LODOP.SET_PRINT_STYLEA(0, "ItemType", 1);
+		LODOP.SET_PRINT_STYLEA(0, "FontSize", 12);
+		LODOP.SET_PRINT_STYLEA(0, "Bold", 2);
+		
+		LODOP.PRINT(); //最后一个打印(或预览、维护、设计)语句
+	}
 }

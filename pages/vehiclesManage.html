@@ -4,12 +4,13 @@
 	<head>
 		<meta charset="UTF-8">
 		<script type="text/javascript" src="../vendor/jquery/jquery.min.js"></script>
-		<script type="text/javascript" src="../vendor/jquery/jquery.cookie.js"></script>
+		
 		<script type="text/javascript" src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="../vendor/bootstrap-datatable/bootstrap-table.js"></script>
 		<script type="text/javascript" src="../vendor/laydate/laydate.js"></script>
 		<script type="text/javascript" src="../js/common.js"></script>
 		<script type="text/javascript" src="../js/vehiclesManage.js"></script>
+				<script type="text/javascript" src="../vendor/lodop/LodopFuncs.js"></script>
 		<script type="text/javascript" src="../vendor/boostrap-select/bootstrap-select.min.js"></script>
 		<script type="text/javascript" src="../vendor/bootstrap-datatable/bootstrap-table-zh-CN.js"></script>
 		<script type="text/javascript" src="../vendor/jquery/ztree/js/jquery.ztree.core.js"></script>
@@ -89,6 +90,10 @@
 		            </button>-->
 					<button type="button" class="btn btn-danger" onclick="confirmDel()">
 						删除车辆信息
+		             <!-- <i class="glyphicon glyphicon-remove" aria-hidden="true">删除车辆信息</i>-->
+		            </button>
+		            <button type="button" class="btn btn-warning" onclick="printCarQRCode()">
+						打印二维码
 		             <!-- <i class="glyphicon glyphicon-remove" aria-hidden="true">删除车辆信息</i>-->
 		            </button>
 					<!--<button type="button" class="btn btn-info" onclick="relLaissezpasser()">
